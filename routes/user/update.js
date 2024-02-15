@@ -14,26 +14,29 @@ router.use(methodOverride('_method'));
 // import hash module
 const hashPass = require('../../services/passwordHash');
 
+// update password fn
+async function userUpdatePass(userId, newPass) {
+    const hashedPassword = await hashPass(newPass);
+    await prisma.user.update({
+        where: {
+            id: userId,
+        },
+        data: {
+            password: hashedPassword,
+        },
+    });
+}
+
 // update password
 router.put('/password', async (req, res) => {
     try {
-        const hashedPassword = await hashPass(req.body.password);
-        await prisma.user.update({
-            where: {
-                id: req.body.id,
-            },
-            data: {
-                password: hashedPassword,
-            },
-        });
+        await userUpdatePass(req.body.id, req.body.password);
         res.status(200).json({ msg: 'Password changed successfully' });
     } catch (e) {
         console.error(e);
         if (e.code === 'P2025') {
-            // Record to update not found
             res.status(404).json({ error: 'User not found' });
         } else {
-            // Other Prisma errors
             res.status(500).json({ error: 'Internal Server Error' });
         }
     } finally {
@@ -41,25 +44,27 @@ router.put('/password', async (req, res) => {
     }
 });
 
+// update email fn
+async function userUpdateEmail(userId, newEmail) {
+    await prisma.user.update({
+        where: {
+            id: userId,
+        },
+        data: {
+            email: newEmail,
+        },
+    });
+}
 // update email
 router.put('/email', async (req, res) => {
     try {
-        await prisma.user.update({
-            where: {
-                id: req.body.id,
-            },
-            data: {
-                email: req.body.email,
-            },
-        });
+        await userUpdateEmail(req.body.id, req.body.email);
         res.status(200).json({ msg: 'Email changed successfully' });
     } catch (e) {
         console.error(e);
         if (e.code === 'P2025') {
-            // Record to update not found
             res.status(404).json({ error: 'User not found' });
         } else {
-            // Other Prisma errors
             res.status(500).json({ error: 'Internal Server Error' });
         }
     } finally {
