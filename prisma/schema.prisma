@@ -11,10 +11,19 @@ datasource db {
 }
 
 model User {
-  id        String   @id @unique
-  email     String   @unique
-  name      String?
-  password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id             String          @id @unique
+  email          String          @unique
+  name           String
+  password       String
+  picturePath    String
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  UserPrefrences UserPrefrences?
+}
+
+model UserPrefrences {
+  id         String  @id @unique @default(uuid())
+  getUpdates Boolean
+  user       User    @relation(fields: [userId], references: [id])
+  userId     String  @unique
 }
