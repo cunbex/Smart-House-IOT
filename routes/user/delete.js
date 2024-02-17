@@ -22,9 +22,7 @@ async function userDelete(userId) {
 // delete user
 router.delete('/', async (req, res) => {
     if (!req.body.id) {
-        return res
-            .status(400)
-            .json({ msg: 'Please include name, email, and password' });
+        return res.status(400).json({ msg: 'Please include ID' });
     }
     try {
         await userDelete(req.body.id);

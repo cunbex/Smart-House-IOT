@@ -23,9 +23,7 @@ async function uploadPfp(userId, filename) {
 // profile Picture upload
 router.post('/', upload, async (req, res) => {
     if (!req.body.id) {
-        return res
-            .status(400)
-            .json({ msg: 'Please include user ID in the request body' });
+        return res.status(400).json({ msg: 'Please include user ID' });
     }
     if (!req.file) {
         return res.status(400).json({ msg: 'No file uploaded' });

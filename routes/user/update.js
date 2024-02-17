@@ -29,6 +29,9 @@ async function userUpdatePass(userId, newPass) {
 
 // update password
 router.put('/password', async (req, res) => {
+    if (!req.body.id) {
+        return res.status(400).json({ msg: 'Please include ID' });
+    }
     try {
         await userUpdatePass(req.body.id, req.body.password);
         res.status(200).json({ msg: 'Password changed successfully' });
@@ -57,6 +60,9 @@ async function userUpdateEmail(userId, newEmail) {
 }
 // update email
 router.put('/email', async (req, res) => {
+    if (!req.body.id) {
+        return res.status(400).json({ msg: 'Please include ID' });
+    }
     try {
         await userUpdateEmail(req.body.id, req.body.email);
         res.status(200).json({ msg: 'Email changed successfully' });
