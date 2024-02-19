@@ -19,7 +19,7 @@ async function userUpdatePass(userId, newPass) {
     const hashedPassword = await hashPass(newPass);
     await prisma.user.update({
         where: {
-            id: userId,
+            id: Number(userId),
         },
         data: {
             password: hashedPassword,
@@ -51,7 +51,7 @@ router.put('/password', async (req, res) => {
 async function userUpdateEmail(userId, newEmail) {
     await prisma.user.update({
         where: {
-            id: userId,
+            id: Number(userId),
         },
         data: {
             email: newEmail,

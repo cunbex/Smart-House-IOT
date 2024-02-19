@@ -14,7 +14,7 @@ router.use(methodOverride('_method'));
 async function userDelete(userId) {
     await prisma.user.delete({
         where: {
-            id: userId,
+            id: Number(userId),
         },
     });
 }

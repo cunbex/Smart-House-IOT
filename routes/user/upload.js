@@ -12,7 +12,7 @@ async function uploadPfp(userId, filename) {
     const newPicturePath = `/public/images/${filename}`;
     await prisma.user.update({
         where: {
-            id: userId,
+            id: Number(userId),
         },
         data: {
             picturePath: newPicturePath,
