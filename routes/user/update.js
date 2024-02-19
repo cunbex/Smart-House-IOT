@@ -68,13 +68,10 @@ router.put('/email', async (req, res) => {
         res.status(200).json({ msg: 'Email changed successfully' });
     } catch (e) {
         console.error(e);
-        if (e.code === 'P2025') {
-            res.status(404).json({ error: 'User not found' });
-        } else {
-            res.status(500).json({ error: 'Internal Server Error' });
-        }
+        res.status(500).json({ error: 'Internal Server Error' });
     } finally {
         await prisma.$disconnect();
     }
 });
+// ADD CODE WHEN USER ID DOESN'T EXIST IN DB
 module.exports = router;
