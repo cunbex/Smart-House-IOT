@@ -1,18 +1,14 @@
 const express = require('express');
-const { PrismaClient } = require('@prisma/client');
-const multerConfig = require('../../services/multerConfig');
 
 const router = express.Router();
-const prisma = new PrismaClient();
 
-// Use Multer configuration for handling file uploads
-const upload = multerConfig;
 // profile picture upload fn
-async function uploadPfp(userId, filename) {
+
+async function uploadPfp(userId, filename, prisma) {
     const newPicturePath = `/public/images/${filename}`;
     await prisma.user.update({
         where: {
-            id: Number(userId),
+            id: userId,
         },
         data: {
             picturePath: newPicturePath,
@@ -21,16 +17,13 @@ async function uploadPfp(userId, filename) {
 }
 
 // profile Picture upload
-router.post('/', upload, async (req, res) => {
-    if (!req.body.id) {
-        return res.status(400).json({ msg: 'Please include user ID' });
-    }
+router.post('/', async (req, res) => {
     if (!req.file) {
         return res.status(400).json({ msg: 'No file uploaded' });
     }
 
     try {
-        await uploadPfp(req.body.id, req.file.filename);
+        await uploadPfp(req.body.id, req.file.filename, req.prisma);
         res.status(200).json({
             msg: 'Profile picture uploaded and user updated successfully',
         });
@@ -38,8 +31,7 @@ router.post('/', upload, async (req, res) => {
         console.error(e);
         res.status(500).json({ error: 'Internal Server Error' });
     } finally {
-        await prisma.$disconnect();
+        await req.prisma.$disconnect();
     }
 });
-// ADD CODE WHEN USER ID DOESN'T EXIST IN DB
 module.exports = router;

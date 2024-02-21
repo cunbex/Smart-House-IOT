@@ -9,7 +9,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/user/users');
 
 // plugin passport services
-require('./services/passport-setup');
+require('./services/passport_setup');
 
 const app = express();
 
