@@ -3,8 +3,8 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cors = require('cors');
 const errorHandler = require('./middleware/errorHandler');
-
 // import routes
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/user');
@@ -14,6 +14,9 @@ const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+// Use CORS
+app.use(cors());
 
 // logger + req body + static files middleware
 app.use(logger('dev'));
