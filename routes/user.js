@@ -38,6 +38,6 @@ router.get('/get/byid', checkID, userController.get_user_by_id);
 // Put endpoints
 router.put('/put/password', checkID, userController.put_user_password);
 router.put('/put/email', checkID, checkEmail, userController.put_user_email);
-router.put('/put/name', checkID, userController.put_user_password);
+router.put('/put/name', checkID, userController.put_user_name);
 
 module.exports = router;
