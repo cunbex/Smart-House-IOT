@@ -22,27 +22,22 @@ router.use(methodOverride('_method'));
 // import routes
 const userController = require('../controllers/userController');
 
-// Create endpoint
-router.post('/create', checkEmail, userController.user_create);
+// Post endpoints
+router.post('/post/record', checkEmail, userController.post_user);
+router.post('/post/picture', upload, userController.post_user_picture);
 
-// Delete endpoint
-router.delete('/delete', checkID, userController.user_delete);
+// Delete endpoints
+router.delete('/delete/record', checkID, userController.delete_user);
 
-// Read endpoint
-router.get('/read', userController.user_list);
-router.get('/read/picture', checkID, userController.user_picture_get);
+// GET endpoints
+router.get('/get/all', userController.get_user_list);
+router.get('/get/picture', checkID, userController.get_user_picture);
+router.get('/get/byemail', checkID, userController.get_user_by_email);
+router.get('/get/byid', checkID, userController.get_user_by_id);
 
-// Update endpoint
-router.put('/update/password', checkID, userController.user_password_update);
-router.put(
-    '/update/email',
-    checkID,
-    checkEmail,
-    userController.user_email_update,
-);
-router.put('/update/name', checkID, userController.user_name_update);
-
-// Upload endpoint
-router.post('/upload', upload, userController.user_picture_post);
+// Put endpoints
+router.put('/put/password', checkID, userController.put_user_password);
+router.put('/put/email', checkID, checkEmail, userController.put_user_email);
+router.put('/put/name', checkID, userController.put_user_password);
 
 module.exports = router;

@@ -6,14 +6,14 @@ const fs = require('fs').promises;
 // import hash module
 const hashPass = require('../services/passwordHash');
 
-// Display list of all users.
-exports.user_list = asyncHandler(async (req, res, next) => {
+// GET all users.
+exports.get_user_list = asyncHandler(async (req, res, next) => {
     const allUsers = await req.prisma.user.findMany();
     res.status(200).json(allUsers);
 });
 
-// Send User picture on GET.
-exports.user_picture_get = asyncHandler(async (req, res, next) => {
+// GET user picture.
+exports.get_user_picture = asyncHandler(async (req, res, next) => {
     const result = await req.prisma.user.findUnique({
         where: {
             id: req.body.id,
@@ -30,8 +30,28 @@ exports.user_picture_get = asyncHandler(async (req, res, next) => {
     });
 });
 
-// Handle User create on POST
-exports.user_create = asyncHandler(async (req, res, next) => {
+// GET user by email
+exports.get_user_by_email = asyncHandler(async (req, res, next) => {
+    const result = await req.prisma.user.findUnique({
+        where: {
+            email: req.body.email,
+        },
+    });
+    res.status(200).json(result);
+});
+
+// GET user by id
+exports.get_user_by_id = asyncHandler(async (req, res, next) => {
+    const result = await req.prisma.user.findUnique({
+        where: {
+            id: req.body.id,
+        },
+    });
+    res.status(200).json(result);
+});
+
+// POST user
+exports.post_user = asyncHandler(async (req, res, next) => {
     const hashedPassword = await hashPass(req.body.password);
     const userId = uuidv4();
     const defaultPicturePath = 'images/default.jpg';
@@ -47,8 +67,76 @@ exports.user_create = asyncHandler(async (req, res, next) => {
     res.status(201).json({ msg: 'User created successfully' });
 });
 
-// Handle User delete on DELETE.
-exports.user_delete = asyncHandler(async (req, res, next) => {
+// POST picture
+exports.post_user_picture = asyncHandler(async (req, res, next) => {
+    if (!req.file) {
+        return res.status(400).json({ msg: 'No file uploaded' });
+    }
+    const newPicturePath = `/images/${req.file.filename}`;
+    await req.prisma.user.update({
+        where: {
+            id: req.body.id,
+        },
+        data: {
+            picturePath: newPicturePath,
+        },
+    });
+    res.status(200).json({
+        msg: 'Profile picture uploaded',
+    });
+});
+
+// PUT password
+exports.put_user_password = asyncHandler(async (req, res, next) => {
+    if (!req.body.password) {
+        return res.status(400).json({ msg: 'Please include password' });
+    }
+    const hashedPassword = await hashPass(req.body.password);
+    await req.prisma.user.update({
+        where: {
+            id: req.body.id,
+        },
+        data: {
+            password: hashedPassword,
+        },
+    });
+    res.status(200).json({ msg: 'Password changed successfully' });
+});
+
+// PUT email
+exports.put_user_email = asyncHandler(async (req, res, next) => {
+    if (!req.body.email) {
+        return res.status(400).json({ msg: 'Please include email' });
+    }
+    await req.prisma.user.update({
+        where: {
+            id: req.body.id,
+        },
+        data: {
+            email: req.body.email,
+        },
+    });
+    res.status(200).json({ msg: 'Email changed successfully' });
+});
+
+// PUT name
+exports.put_user_name = asyncHandler(async (req, res, next) => {
+    if (!req.body.name) {
+        return res.status(400).json({ msg: 'Please include name' });
+    }
+    await req.prisma.user.update({
+        where: {
+            id: req.body.id,
+        },
+        data: {
+            name: req.body.name,
+        },
+    });
+    res.status(200).json({ msg: 'Name changed successfully' });
+});
+
+// DELETE user
+exports.delete_user = asyncHandler(async (req, res, next) => {
     const result = await req.prisma.user.findUnique({
         where: {
             id: req.body.id,
@@ -68,72 +156,4 @@ exports.user_delete = asyncHandler(async (req, res, next) => {
         await fs.unlink(filePath);
     }
     res.status(200).json({ msg: 'User deleted successfully' });
-});
-
-// Handle User password update on PUT.
-exports.user_password_update = asyncHandler(async (req, res, next) => {
-    if (!req.body.password) {
-        return res.status(400).json({ msg: 'Please include password' });
-    }
-    const hashedPassword = await hashPass(req.body.password);
-    await req.prisma.user.update({
-        where: {
-            id: req.body.id,
-        },
-        data: {
-            password: hashedPassword,
-        },
-    });
-    res.status(200).json({ msg: 'Password changed successfully' });
-});
-
-// Handle User email update on PUT.
-exports.user_email_update = asyncHandler(async (req, res, next) => {
-    if (!req.body.email) {
-        return res.status(400).json({ msg: 'Please include email' });
-    }
-    await req.prisma.user.update({
-        where: {
-            id: req.body.id,
-        },
-        data: {
-            email: req.body.email,
-        },
-    });
-    res.status(200).json({ msg: 'Email changed successfully' });
-});
-
-// Handle User name update on PUT.
-exports.user_name_update = asyncHandler(async (req, res, next) => {
-    if (!req.body.name) {
-        return res.status(400).json({ msg: 'Please include name' });
-    }
-    await req.prisma.user.update({
-        where: {
-            id: req.body.id,
-        },
-        data: {
-            name: req.body.name,
-        },
-    });
-    res.status(200).json({ msg: 'Name changed successfully' });
-});
-
-// Get User picture on POST.
-exports.user_picture_post = asyncHandler(async (req, res, next) => {
-    if (!req.file) {
-        return res.status(400).json({ msg: 'No file uploaded' });
-    }
-    const newPicturePath = `/images/${req.file.filename}`;
-    await req.prisma.user.update({
-        where: {
-            id: req.body.id,
-        },
-        data: {
-            picturePath: newPicturePath,
-        },
-    });
-    res.status(200).json({
-        msg: 'Profile picture uploaded',
-    });
 });
