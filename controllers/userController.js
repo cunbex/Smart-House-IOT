@@ -1,6 +1,7 @@
 const asyncHandler = require('express-async-handler');
 const { v4: uuidv4 } = require('uuid');
 const path = require('node:path');
+const fs = require('fs').promises;
 
 // import hash module
 const hashPass = require('../services/passwordHash');
@@ -48,11 +49,24 @@ exports.user_create = asyncHandler(async (req, res, next) => {
 
 // Handle User delete on DELETE.
 exports.user_delete = asyncHandler(async (req, res, next) => {
+    const result = await req.prisma.user.findUnique({
+        where: {
+            id: req.body.id,
+        },
+    });
     await req.prisma.user.delete({
         where: {
             id: req.body.id,
         },
     });
+    if (result.picturePath !== 'images/default.jpg') {
+        const filePath = path.resolve(
+            __dirname,
+            `../public/${result.picturePath}`,
+        );
+        await fs.access(filePath);
+        await fs.unlink(filePath);
+    }
     res.status(200).json({ msg: 'User deleted successfully' });
 });
 
