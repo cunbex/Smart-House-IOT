@@ -20,8 +20,8 @@ async function userUpdatePass(userId, newPass, prisma) {
 
 // update password route
 router.put('/password', async (req, res) => {
-    if (!req.body.id) {
-        return res.status(400).json({ msg: 'Please include ID' });
+    if (!req.body.password) {
+        return res.status(400).json({ msg: 'Please include password' });
     }
     try {
         await userUpdatePass(req.body.id, req.body.password, req.prisma);
@@ -47,6 +47,9 @@ async function userUpdateEmail(userId, newEmail, prisma) {
 }
 // update email route
 router.put('/email', async (req, res) => {
+    if (!req.body.password) {
+        return res.status(400).json({ msg: 'Please include email' });
+    }
     try {
         await userUpdateEmail(req.body.id, req.body.email, req.prisma);
         res.status(200).json({ msg: 'Email changed successfully' });
@@ -72,6 +75,9 @@ async function userUpdateName(userId, newName, prisma) {
 
 // update name route
 router.put('/name', async (req, res) => {
+    if (!req.body.name) {
+        return res.status(400).json({ msg: 'Please include name' });
+    }
     try {
         await userUpdateName(req.body.id, req.body.name, req.prisma);
         res.status(200).json({ msg: 'Name changed successfully' });

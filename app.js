@@ -8,14 +8,11 @@ const logger = require('morgan');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/user/users');
 
-// plugin passport services
-require('./services/passport_setup');
-
 const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+app.set('view engine', 'ejs');
 
 // logger + req body + static files middleware
 app.use(logger('dev'));

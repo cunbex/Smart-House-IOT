@@ -24,9 +24,9 @@ async function userAdd(userName, userEmail, userPassword, prisma) {
 
 // Post user
 router.post('/', async (req, res) => {
-    if (!req.body.email || !req.body.name || !req.body.password) {
+    if (!req.body.name || !req.body.password) {
         res.status(400).json({
-            msg: 'Please include name, email, and password',
+            msg: 'Please include name, and password',
         });
     }
     try {
