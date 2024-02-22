@@ -3,8 +3,7 @@ const express = require('express');
 const router = express.Router();
 /* GET home page. */
 router.get('/', (req, res, next) => {
-    res.render('home');
-    // res.render("index", { title: "Express" });
+    res.status(200).json('You are Online!');
 });
 
 module.exports = router;
