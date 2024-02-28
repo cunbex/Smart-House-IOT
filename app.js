@@ -14,7 +14,7 @@ require('dotenv').config();
 const errorHandler = require('./middleware/errorHandler');
 // import routes
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/user');
+const usersRouter = require('./routes/api/user');
 
 const app = express();
 
@@ -51,11 +51,13 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+/*
 app.use(async (req, res, next) => {
     console.log(req.session);
     console.log(req.user);
     next();
 });
+*/
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -63,7 +65,7 @@ app.set('view engine', 'ejs');
 
 // Dynamic routes
 app.use('/', indexRouter);
-app.use('/user', usersRouter);
+app.use('/api/user', usersRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

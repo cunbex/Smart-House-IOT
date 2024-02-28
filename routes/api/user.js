@@ -3,10 +3,10 @@ const methodOverride = require('method-override');
 const passport = require('passport');
 const { PrismaClient } = require('@prisma/client');
 
-const { isAuth } = require('../middleware/authMiddleware.js');
-const multerConfig = require('../services/multerConfig');
-const checkID = require('../middleware/checkID');
-const checkEmail = require('../middleware/checkEmail');
+const { isAuth } = require('../../middleware/authMiddleware.js');
+const multerConfig = require('../../services/multerConfig.js');
+const checkID = require('../../middleware/checkID.js');
+const checkEmail = require('../../middleware/checkEmail.js');
 
 const router = express.Router();
 const prisma = new PrismaClient();
@@ -24,7 +24,7 @@ router.use((req, res, next) => {
 router.use(methodOverride('_method'));
 
 // import routes
-const userController = require('../controllers/userController');
+const userController = require('../../controllers/userController.js');
 
 // Post endpoints
 router.post('/post/record', checkEmail, userController.post_user);

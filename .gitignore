@@ -1,3 +1,7 @@
 node_modules/
+.eslintignore
+.eslintrc.json
+.prettierrc.json
+package-lock.json
 .env
 .vscode
