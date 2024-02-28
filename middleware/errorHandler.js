@@ -1,11 +1,12 @@
 const errorHandler = (err, req, res, next) => {
-    console.error(err.stack);
-    const errStatus = err.statusCode || 500;
-    const errMsg = err.message || 'Something went wrong';
-    res.status(errStatus).json({
+    if (err.stack) {
+        console.error(err.stack);
+    }
+    const status = err.statusCode || 500;
+    res.status(status).json({
         success: false,
-        status: errStatus,
-        message: errMsg,
+        status,
+        message: err.message || 'Something went wrong',
         stack: process.env.NODE_ENV === 'development' ? err.stack : {},
     });
 };

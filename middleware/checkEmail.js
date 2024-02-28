@@ -1,10 +1,11 @@
+const asyncHandler = require('express-async-handler');
+
 // checkID middleware
-async function checkEmail(req, res, next) {
+
+const checkEmail = asyncHandler(async (req, res, next) => {
     const userEmail = req.body.email;
     if (!userEmail) {
-        return res.status(400).json({
-            msg: 'User Email is missing in the request body',
-        });
+        return next({ statusCode: 400, message: 'no email provided' });
     }
     const result = await req.prisma.user.findUnique({
         where: {
@@ -12,11 +13,9 @@ async function checkEmail(req, res, next) {
         },
     });
     if (result) {
-        return res.status(409).json({
-            msg: `User Email exists`,
-        });
+        return next({ statusCode: 409, message: 'Email Exists' });
     }
     next();
-}
+});
 
 module.exports = checkEmail;

@@ -1,10 +1,10 @@
+const asyncHandler = require('express-async-handler');
 // checkID middleware
-async function checkID(req, res, next) {
+
+const checkID = asyncHandler(async (req, res, next) => {
     const userId = req.body.id;
     if (!userId) {
-        return res.status(400).json({
-            msg: 'User ID is missing in the request body',
-        });
+        return next({ statusCode: 400, message: 'no id provided' });
     }
     const result = await req.prisma.user.findUnique({
         where: {
@@ -12,11 +12,8 @@ async function checkID(req, res, next) {
         },
     });
     if (!result) {
-        return res.status(404).json({
-            msg: `User ID not found in DB`,
-        });
+        return next({ statusCode: 404, message: 'user not found' });
     }
     next();
-}
-
+});
 module.exports = checkID;

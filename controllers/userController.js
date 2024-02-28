@@ -3,13 +3,13 @@ const { v4: uuidv4 } = require('uuid');
 const path = require('node:path');
 const fs = require('fs').promises;
 
-// import hash module
-const hashPass = require('../services/passwordHash');
+// import generate password module
+const { genPass } = require(`../services/passwordHash`);
 
 // GET all users.
 exports.get_user_list = asyncHandler(async (req, res, next) => {
     const allUsers = await req.prisma.user.findMany();
-    res.status(200).json(allUsers);
+    res.status(200).json({ success: true, status: 200, allUsers });
 });
 
 // GET user picture.
@@ -19,14 +19,12 @@ exports.get_user_picture = asyncHandler(async (req, res, next) => {
             id: req.body.id,
         },
     });
-    const filePath = path.resolve(__dirname, `../public/${result.picturePath}`);
+    const filePath = path.resolve(
+        __dirname,
+        `${process.env.GET_PICTURE_PATH + result.picture}`,
+    );
     res.status(200).sendFile(filePath, (err) => {
-        if (err) {
-            console.error(err);
-            res.status(500).json({ error: 'Internal Server Error' });
-        } else {
-            console.log('Sent:', result.picturePath);
-        }
+        if (!err) console.log('Sent:', result.picture);
     });
 });
 
@@ -37,7 +35,7 @@ exports.get_user_by_email = asyncHandler(async (req, res, next) => {
             email: req.body.email,
         },
     });
-    res.status(200).json(result);
+    res.status(200).json({ success: true, status: 200, result });
 });
 
 // GET user by id
@@ -47,51 +45,60 @@ exports.get_user_by_id = asyncHandler(async (req, res, next) => {
             id: req.body.id,
         },
     });
-    res.status(200).json(result);
+    res.status(200).json({ success: true, status: 200, result });
 });
 
 // POST user
 exports.post_user = asyncHandler(async (req, res, next) => {
-    const hashedPassword = await hashPass(req.body.password);
+    const hashedPassword = await genPass(req.body.password);
     const userId = uuidv4();
-    const defaultPicturePath = 'images/default.jpg';
+    const defaultPicturePath = process.env.DEFAULT_PICTURE_PATH;
     await req.prisma.user.create({
         data: {
             id: userId,
             email: req.body.email,
             name: req.body.name,
             password: hashedPassword,
-            picturePath: defaultPicturePath,
+            picture: defaultPicturePath,
         },
     });
-    res.status(201).json({ msg: 'User created successfully' });
+    res.status(201).json({
+        success: true,
+        status: 201,
+        message: 'User created successfully',
+    });
 });
 
 // POST picture
 exports.post_user_picture = asyncHandler(async (req, res, next) => {
     if (!req.file) {
-        return res.status(400).json({ msg: 'No file uploaded' });
+        return next({ statusCode: 400, message: 'Please include file' });
     }
-    const newPicturePath = `/images/${req.file.filename}`;
+    const newPicturePath = `${process.env.POST_PICTURE_PATH + req.file.filename}`;
     await req.prisma.user.update({
         where: {
             id: req.body.id,
         },
         data: {
-            picturePath: newPicturePath,
+            picture: newPicturePath,
         },
     });
     res.status(200).json({
-        msg: 'Profile picture uploaded',
+        success: true,
+        status: 200,
+        message: 'Profile picture uploaded',
     });
 });
 
 // PUT password
 exports.put_user_password = asyncHandler(async (req, res, next) => {
     if (!req.body.password) {
-        return res.status(400).json({ msg: 'Please include password' });
+        return next({
+            statusCode: 400,
+            message: 'Please include password',
+        });
     }
-    const hashedPassword = await hashPass(req.body.password);
+    const hashedPassword = await genPass(req.body.password);
     await req.prisma.user.update({
         where: {
             id: req.body.id,
@@ -100,13 +107,17 @@ exports.put_user_password = asyncHandler(async (req, res, next) => {
             password: hashedPassword,
         },
     });
-    res.status(200).json({ msg: 'Password changed successfully' });
+    res.status(200).json({
+        success: true,
+        status: 200,
+        message: 'Password changed successfully',
+    });
 });
 
 // PUT email
 exports.put_user_email = asyncHandler(async (req, res, next) => {
     if (!req.body.email) {
-        return res.status(400).json({ msg: 'Please include email' });
+        return next({ statusCode: 400, message: 'Please include email' });
     }
     await req.prisma.user.update({
         where: {
@@ -116,13 +127,17 @@ exports.put_user_email = asyncHandler(async (req, res, next) => {
             email: req.body.email,
         },
     });
-    res.status(200).json({ msg: 'Email changed successfully' });
+    res.status(200).json({
+        success: true,
+        status: 200,
+        message: 'Email changed successfully',
+    });
 });
 
 // PUT name
 exports.put_user_name = asyncHandler(async (req, res, next) => {
     if (!req.body.name) {
-        return res.status(400).json({ msg: 'Please include name' });
+        return next({ statusCode: 400, message: 'Please include name' });
     }
     await req.prisma.user.update({
         where: {
@@ -132,7 +147,11 @@ exports.put_user_name = asyncHandler(async (req, res, next) => {
             name: req.body.name,
         },
     });
-    res.status(200).json({ msg: 'Name changed successfully' });
+    res.status(200).json({
+        success: true,
+        status: 200,
+        message: 'Name changed successfully',
+    });
 });
 
 // DELETE user
@@ -147,13 +166,17 @@ exports.delete_user = asyncHandler(async (req, res, next) => {
             id: req.body.id,
         },
     });
-    if (result.picturePath !== 'images/default.jpg') {
+    if (result.picture !== process.env.DEFAULT_PICTURE_PATH) {
         const filePath = path.resolve(
             __dirname,
-            `../public/${result.picturePath}`,
+            `${process.env.GET_PICTURE_PATH + result.picture}`,
         );
         await fs.access(filePath);
         await fs.unlink(filePath);
     }
-    res.status(200).json({ msg: 'User deleted successfully' });
+    res.status(200).json({
+        success: true,
+        status: 200,
+        message: 'User deleted successfully',
+    });
 });

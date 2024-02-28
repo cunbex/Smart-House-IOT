@@ -3,7 +3,7 @@ const path = require('path');
 
 // Multer configuration
 const storage = multer.diskStorage({
-    destination: path.join(__dirname, '../public/images'),
+    destination: path.join(__dirname, process.env.PICTURE_PATH),
     filename: (req, file, callback) => {
         const userId = req.body.id || 'default';
         const extension = path.extname(file.originalname);
@@ -13,4 +13,4 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-module.exports = upload.single('profilePicture');
+module.exports = upload.single('picture');
