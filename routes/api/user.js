@@ -4,15 +4,14 @@ const passport = require('passport');
 const { PrismaClient } = require('@prisma/client');
 
 const { isAuth } = require('../../middleware/authMiddleware.js');
-const multerConfig = require('../../services/multerConfig.js');
-const checkID = require('../../middleware/checkID.js');
-const checkEmail = require('../../middleware/checkEmail.js');
 
 const router = express.Router();
 const prisma = new PrismaClient();
 
-// Use Multer configuration for handling file uploads
-const upload = multerConfig;
+const getRoutes = require('./get.js');
+const putRoutes = require('./put.js');
+const postRoutes = require('./post.js');
+const deleteRoutes = require('./delete.js');
 
 // Middleware to attach Prisma client to the request object
 router.use((req, res, next) => {
@@ -23,27 +22,7 @@ router.use((req, res, next) => {
 // init header override with _method flag in url
 router.use(methodOverride('_method'));
 
-// import routes
-const userController = require('../../controllers/userController.js');
-
-// Post endpoints
-router.post('/post/record', checkEmail, userController.post_user);
-router.post('/post/picture', upload, userController.post_user_picture);
-
-// Delete endpoints
-router.delete('/delete/record', checkID, userController.delete_user);
-
-// GET endpoints
-router.get('/get/all', userController.get_user_list);
-router.get('/get/picture', checkID, userController.get_user_picture);
-router.get('/get/byemail', checkEmail, userController.get_user_by_email);
-router.get('/get/byid', checkID, userController.get_user_by_id);
-
-// Put endpoints
-router.put('/put/password', checkID, userController.put_user_password);
-router.put('/put/email', checkID, checkEmail, userController.put_user_email);
-router.put('/put/name', checkID, userController.put_user_name);
-
+router.use('/user', [getRoutes, putRoutes, postRoutes, deleteRoutes]);
 /// ///////////////////////////////////
 router.post(
     '/login',
