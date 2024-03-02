@@ -1,13 +1,14 @@
-const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const cors = require('cors');
+const createError = require('http-errors');
 const passport = require('passport');
 const { PrismaSessionStore } = require('@quixo3/prisma-session-store');
 const { PrismaClient } = require('@prisma/client');
 const expressSession = require('express-session');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const cors = require('cors');
+const expressLayouts = require('express-ejs-layouts');
 
 require('dotenv').config();
 
@@ -60,6 +61,8 @@ app.use(async (req, res, next) => {
 */
 
 // view engine setup
+app.use(expressLayouts);
+app.set('layout', './layouts/baseLayout');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 

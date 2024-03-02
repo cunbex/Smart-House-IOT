@@ -1,0 +1,115 @@
+.manual {
+    width: calc(100% - 64px);
+    max-width: 573px;
+    margin-block-end: 120px;
+    margin-inline: auto;
+    padding-block-start: 120px;
+}
+
+.manual__list {
+    display: grid;
+    gap: 48px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+}
+
+.manual__item {
+    padding-block-start: 80px;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: 56px;
+}
+
+.manual__item--app {
+    background-image: url('/images/assets/manual-locate.svg');
+}
+
+.manual__item--scooter {
+    background-image: url('/images/assets/manual-scooter.svg');
+}
+
+.manual__item--ride {
+    background-image: url('/images/assets/manual-ride.svg');
+}
+
+.manual__title {
+    margin-block: 0 24px;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.4;
+    letter-spacing: -0.89px;
+    color: var(--dark-navy);
+}
+
+.manual__text {
+    margin: 0;
+}
+
+@media (min-width: 768px) {
+    .manual {
+        position: relative;
+        margin-block-end: 145px;
+    }
+
+    .manual::before {
+        content: '';
+        position: absolute;
+        inset-block-start: 0;
+        inset-inline-start: 42px;
+        z-index: -1;
+        display: block;
+        width: 15px;
+        height: 512px;
+        background-color: var(--light-grey);
+    }
+
+    .manual__list {
+        gap: 40px;
+        text-align: start;
+    }
+
+    .manual__item {
+        padding-block-start: 0;
+        padding-inline-start: 175px;
+        background-size: 96px;
+        background-position-x: left;
+    }
+
+    .manual__title {
+        margin-block-end: 28px;
+        font-size: 24px;
+        line-height: 1.17;
+        letter-spacing: -1.07px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .manual {
+        width: 100%;
+        max-width: none;
+        margin-block-end: 200px;
+        padding-block-start: 160px;
+    }
+
+    .manual::before {
+        inset-block-start: 200px;
+        inset-inline-start: 0;
+        width: calc(50% + 255px);
+        height: 15px;
+    }
+
+    .manual__list {
+        grid-template-columns: repeat(3, 350px);
+        gap: 30px;
+        max-width: 1110px;
+        margin-inline: auto;
+    }
+
+    .manual__item {
+        padding-block-start: 136px;
+        padding-inline-start: 0;
+    }
+}

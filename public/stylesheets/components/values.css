@@ -1,0 +1,131 @@
+.values {
+    width: calc(100% - 64px);
+    max-width: 460px;
+    margin-block-end: 145px;
+    margin-inline: auto;
+    text-align: center;
+}
+
+.values__title {
+    margin-block-start: 0;
+    margin-block-end: 64px;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1;
+    letter-spacing: -1.43px;
+    color: var(--dark-navy);
+}
+
+.values__list {
+    display: grid;
+    gap: 56px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: values-counter;
+}
+
+.values__item {
+    position: relative;
+    padding-block-start: 304px;
+    counter-increment: values-counter;
+}
+
+.values__item::before,
+.values__item::after {
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+}
+
+.values__item::before {
+    content: '';
+    inset-block-start: 0;
+    inset-inline-start: calc(50% - 120px);
+    width: 240px;
+    height: 240px;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.values__item::after {
+    content: '0' counter(values-counter);
+    inset-block-start: 192px;
+    inset-inline-start: calc(50% - 48px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 96px;
+    height: 96px;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: -1.07px;
+    color: var(--dark-navy);
+    background-color: var(--yellow);
+}
+
+.values__item--team_work::before {
+    background-image: url('/images/assets/info/team-work.jpg');
+}
+.values__item--ambition::before {
+    background-image: url('/images/assets/info/ambition.jpg');
+}
+.values__item--happy_environment::before {
+    background-image: url('/images/assets/info/happy-environment.jpg');
+}
+.values__item--tech::before {
+    background-image: url('/images/assets/our-tech.jpg');
+}
+
+.values__item--integrity::before {
+    background-image: url('/images/assets/our-integrity.jpg');
+}
+
+.values__item--community::before {
+    background-image: url('/images/assets/our-community.jpg');
+}
+
+.values__subtitle {
+    margin-block-start: 0;
+    margin-block-end: 27px;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.17;
+    letter-spacing: -1.07px;
+    color: var(--dark-navy);
+}
+
+.values__text {
+    margin-block: 0;
+}
+
+@media (min-width: 768px) {
+    .values {
+        margin-block-end: 120px;
+    }
+
+    .values__title {
+        margin-block-end: 105px;
+        font-size: 48px;
+        letter-spacing: -2.14px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .values {
+        max-width: none;
+    }
+
+    .values__list {
+        grid-template-columns: repeat(3, 350px);
+        gap: 30px;
+        justify-content: center;
+    }
+
+    .values__item {
+        padding-block-start: 327px;
+    }
+}

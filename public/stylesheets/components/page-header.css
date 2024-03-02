@@ -1,0 +1,197 @@
+.page-header {
+    margin-block-end: 72px;
+    padding-block: 60px;
+    text-align: center;
+    color: white;
+    background-color: var(--dark-grey);
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.page-header--main {
+    margin-block-end: 0;
+    padding-block-start: 115px;
+    padding-block-end: 179px;
+    background-image: url('/images/assets/header/main-mobile.jpg');
+}
+
+.page-header--about {
+    background-image: url('/images/assets/header/about-mobile.jpg');
+}
+
+.page-header--inner {
+    background-image: url('/images/assets/header/inner-mobile.jpg');
+}
+
+.page-header__container {
+    display: grid;
+    gap: 24px;
+    margin-inline: auto;
+    padding-inline: 32px;
+}
+
+.page-header--main .page-header__container {
+    max-width: 600px;
+}
+
+.page-header__title {
+    margin: 0;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 1;
+    letter-spacing: -1.79px;
+}
+
+.page-header__text {
+    margin-block-start: 0;
+    margin-block-end: 10px;
+}
+
+.page-header__button {
+    width: 180px;
+    margin-inline: auto;
+    white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+    .page-header {
+        position: relative;
+        margin-block-end: 144px;
+        padding-block: 72px;
+        padding-inline: 97px;
+        text-align: start;
+    }
+
+    .page-header::before,
+    .page-header::after {
+        content: '';
+        position: absolute;
+        display: block;
+        background-repeat: no-repeat;
+    }
+
+    .page-header::after {
+        inset-block-end: 68px;
+        inset-inline-end: -30px;
+        width: 234px;
+        height: 63px;
+        background-image: url('/images/assets/patterns/white-circles.svg');
+    }
+
+    .page-header--main {
+        margin-block-end: 0;
+        padding-block-start: 137px;
+        padding-block-end: 217px;
+        text-align: center;
+        background-image: url('/images/assets/header/main-tablet.jpg');
+    }
+
+    .page-header--main::before {
+        inset-block-end: 39px;
+        inset-inline-start: -127px;
+        width: 452px;
+        height: 143px;
+        background-image: url('/images/assets/patterns/right-arrow.svg');
+    }
+
+    .page-header--main::after {
+        inset-block-end: 45px;
+    }
+
+    .page-header--about {
+        background-image: url('/images/assets/header/about-tablet.jpg');
+    }
+
+    .page-header--inner {
+        background-image: url('/images/assets/header/inner-tablet.jpg');
+    }
+
+    .page-header__container {
+        padding-inline: 0;
+    }
+
+    .page-header__title {
+        font-size: 56px;
+        letter-spacing: -2.5px;
+    }
+
+    .page-header__text {
+        margin-block-end: 8px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .page-header__container {
+        max-width: 1110px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .page-header {
+        margin-block-end: 120px;
+        padding-inline: 0;
+    }
+
+    .page-header--main {
+        margin-block-end: 0;
+        padding-block-start: 149px;
+        padding-block-end: 148px;
+        text-align: start;
+        background-image: url('/images/assets/header/main-desktop.jpg');
+    }
+
+    .page-header--main::before {
+        inset-block-end: 157px;
+        inset-inline-start: auto;
+        inset-inline-end: 288px;
+    }
+
+    .page-header--main::after {
+        inset-block-end: 164px;
+        inset-inline-end: -40px;
+    }
+
+    .page-header--about {
+        background-image: url('/images/assets/header/about-desktop.jpg');
+    }
+
+    .page-header--inner {
+        background-image: url('/images/assets/header/inner-desktop.jpg');
+    }
+
+    .page-header__container {
+        gap: 40px;
+    }
+
+    .page-header--main .page-header__container {
+        max-width: 1110px;
+    }
+
+    .page-header__title {
+        max-width: 500px;
+    }
+
+    .page-header__text {
+        max-width: 405px;
+        margin-inline-start: 95px;
+    }
+
+    .page-header__text::before {
+        content: '';
+        position: absolute;
+        inset-block-end: 285px;
+        inset-inline-start: 0;
+        display: block;
+        width: 203px;
+        height: 15px;
+        background-repeat: no-repeat;
+        background-image: url('/images/assets/patterns/line.svg');
+    }
+
+    .page-header__button {
+        margin-inline-start: 95px;
+    }
+}

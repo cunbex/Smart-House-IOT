@@ -1,0 +1,284 @@
+.info {
+    margin-block-end: 120px;
+    text-align: center;
+}
+
+.info__list {
+    display: grid;
+    gap: 120px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.info__item {
+    position: relative;
+    padding-block-start: 367px;
+    background-repeat: no-repeat;
+}
+
+.info__item--telemetry,
+.info__item--payments,
+.info__item--join-us {
+    background-image: url('/images/assets/patterns/left-downward-arrow.svg');
+}
+
+.info__item--near-you,
+.info__item--better-living {
+    background-image: url('/images/assets/patterns/right-arrow.svg');
+}
+
+.info__item--digital-era {
+    background-image: url('/images/assets/patterns/left-upward-arrow.svg');
+}
+
+.info__item--telemetry,
+.info__item--digital-era {
+    background-position: top 28.5% left calc(100% + 390px);
+}
+
+.info__item--near-you {
+    background-position: top 0 right calc(100% + 205px);
+}
+
+.info__item--payments {
+    background-position: top 0 left calc(100% + 495px);
+}
+
+.info__item--better-living {
+    background-position: top 0 right calc(100% + 95px);
+}
+
+.info__item--join-us {
+    background-position: top 30% left calc(100% + 395px);
+}
+
+.info__item::before,
+.info__item::after {
+    content: '';
+    position: absolute;
+    inset-block-start: 0;
+    z-index: -1;
+    display: block;
+    border-radius: 50%;
+}
+
+.info__item::before {
+    inset-inline-start: 50%;
+    width: 312px;
+    height: 312px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    transform: translateX(-50%);
+    overflow: hidden;
+}
+
+.info__item--telemetry::before {
+    background-image: url('/images/assets/info/telemetry.jpg');
+}
+
+.info__item--near-you::before {
+    background-image: url('/images/assets/info/near-you.jpg');
+}
+
+.info__item--payments::before {
+    background-image: url('/images/assets/info/payments.jpg');
+}
+
+.info__item--digital-era::before {
+    background-image: url('/images/assets/info/digital-era.jpg');
+}
+
+.info__item--better-living::before {
+    background-image: url('/images/assets/info/better-living.jpg');
+}
+
+.info__item--join-us::before {
+    background-image: url('/images/assets/info/join-us.jpg');
+}
+
+.info__container {
+    width: calc(100% - 64px);
+    max-width: 1110px;
+    margin-inline: auto;
+}
+
+.info__title {
+    margin-block-start: 0;
+    margin-block-end: 32px;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1;
+    letter-spacing: -1.43px;
+    color: var(--dark-navy);
+}
+
+.info__text {
+    margin-block-start: 0;
+    margin-block-end: 32px;
+}
+
+.info__text:last-child {
+    margin-block-end: 0;
+}
+
+.info__button {
+    min-width: 180px;
+}
+
+@media (min-width: 768px) {
+    .info {
+        max-width: 100%;
+        margin-block-end: 120px;
+        overflow: hidden;
+    }
+
+    .info--main {
+        margin-block-end: 104px;
+    }
+
+    .info__item {
+        padding-block-start: 509px;
+    }
+
+    .info__item::before,
+    .info__item::after {
+        width: 445px;
+        height: 445px;
+    }
+
+    .info__item::after {
+        background-color: var(--light-grey);
+    }
+
+    .info__item:nth-of-type(odd)::after {
+        inset-inline-start: calc(50% + 286px);
+    }
+
+    .info__item:nth-of-type(even)::after {
+        inset-inline-start: calc(50% - 732px);
+    }
+
+    .info__item--telemetry,
+    .info__item--join-us {
+        background-position: top 45% left calc(100% + 5px);
+    }
+
+    .info__item--near-you {
+        background-position: top 0 right calc(100% + 100px);
+    }
+
+    .info__item--payments {
+        background-position: top 11% left calc(100% + 380px);
+    }
+
+    .info__item--digital-era {
+        background-position: top 49% left calc(100% + 5px);
+    }
+
+    .info__item--better-living {
+        background-position: top 0 right calc(100% + 100px);
+    }
+
+    .info__container {
+        width: calc(100% - 196px);
+    }
+
+    .info__title {
+        margin-block-end: 40px;
+        font-size: 48px;
+        letter-spacing: -2.14px;
+    }
+
+    .info__text {
+        margin-block-end: 40px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .info {
+        text-align: start;
+    }
+
+    .info--main {
+        margin-block-end: 200px;
+    }
+
+    .info__list--main {
+        gap: 150px;
+    }
+
+    .info__item {
+        min-height: 445px;
+        padding-block-start: 0;
+    }
+
+    .info__item::before {
+        transform: translateX(0);
+    }
+
+    .info__item:nth-of-type(odd)::before {
+        inset-inline-start: calc(50% + 110px);
+    }
+
+    .info__item:nth-of-type(odd)::after {
+        inset-inline-start: calc(50% + 618px);
+    }
+
+    .info__item:nth-of-type(even)::before {
+        inset-inline-start: calc(50% - 555px);
+    }
+
+    .info__item:nth-of-type(even)::after {
+        inset-inline-start: calc(50% - 1064px);
+    }
+
+    .info__item--telemetry,
+    .info__item--join-us {
+        background-position: top 100% left 100%;
+    }
+
+    .info__item--near-you {
+        background-position: top 0 right calc(100% + 95px);
+    }
+
+    .info__item--payments {
+        background-position: top 25% left calc(100% + 380px);
+    }
+
+    .info__item--digital-era {
+        background-position: top 91% left 100%;
+    }
+
+    .info__item--better-living {
+        background-position: top 0 right calc(100% + 95px);
+    }
+
+    .info__container {
+        display: grid;
+        align-content: center;
+        min-height: 100%;
+    }
+
+    .info__item:nth-of-type(odd) .info__container {
+        padding-inline-end: 600px;
+    }
+
+    .info__item:nth-of-type(even) .info__container {
+        padding-inline-start: 600px;
+    }
+
+    .info__title {
+        margin-block-end: 24px;
+    }
+
+    .info__text {
+        margin-inline-end: 64px;
+    }
+
+    .info__button {
+        width: fit-content;
+    }
+}

@@ -1,0 +1,27 @@
+.button {
+  display: inline-block;
+  padding: 11px;
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  text-transform: capitalize;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  background-color: var(--yellow);
+  border: 3px solid var(--yellow);
+  outline: none;
+  cursor: pointer;
+}
+
+.button:hover,
+.button:focus {
+  color: var(--yellow);
+  background-color: transparent;
+}
+
+@media (min-width: 768px) {
+
+  .button {
+    padding-inline: 37px;
+  }
+}
