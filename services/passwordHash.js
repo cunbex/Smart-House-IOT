@@ -5,6 +5,7 @@ exports.genPass = async (password) => {
     return hashedPassword;
 };
 exports.validatePass = async (password, hashedPassword) => {
+    console.log(password, hashedPassword);
     const state = await bcrypt.compare(password, hashedPassword);
     return state;
 };

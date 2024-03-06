@@ -1,0 +1,26 @@
+@import './landing-fonts.css';
+@import './landing-components/box-sizing.css';
+@import './landing-components/visually-hidden.css';
+@import './landing-components/button.css';
+@import './landing-components/social.css';
+@import './landing-components/page.css';
+@import './landing-components/header.css';
+@import './landing-components/navigation.css';
+@import './landing-components/page-header.css';
+@import './landing-components/manual.css';
+@import './landing-components/info.css';
+@import './landing-components/values.css';
+@import './landing-components/faq.css';
+@import './landing-components/jobs.css';
+@import './landing-components/map.css';
+@import './landing-components/footer.css';
+
+:root {
+    --yellow: hsl(40, 97%, 58%);
+    --yellow-light: hsl(39, 100%, 94%);
+    --dark-grey: hsl(215, 14%, 23%);
+    --dark-navy: hsl(216, 17%, 35%);
+    --dim-grey: hsl(217, 12%, 62%);
+    --light-grey: hsl(212, 41%, 93%);
+    --snow: hsl(214, 37%, 96%);
+}

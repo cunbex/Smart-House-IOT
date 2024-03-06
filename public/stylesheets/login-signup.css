@@ -1,0 +1,439 @@
+@import './login-signup-components/normalize.css';
+
+:root {
+    --mask: none;
+    --invalid: #fc2424;
+    --valid: #03c061;
+    --bold-accent: #0020ad;
+    --light-accent: #a1a1a1;
+}
+
+body {
+    height: calc(100vh - var(--vh-offset, 0px));
+    font-family: 'Manrope', sans-serif;
+    min-height: max(calc(100vh - var(--vh-offset, 0px)), 620px);
+    background: url(../images/assets/login-signup/blob-bg.svg) no-repeat;
+    background-size: cover;
+}
+
+a {
+    font-weight: bold;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: transform 250ms linear;
+    display: inline-block;
+}
+
+a:hover {
+    transform: scale(1.015) translateX(0.5px);
+}
+
+h1 {
+    margin: 0 0 0.5rem;
+    user-select: none;
+}
+
+i {
+    margin-right: 1.1px;
+}
+
+img {
+    -webkit-user-drag: none;
+}
+
+main {
+    max-width: 640px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0 auto;
+}
+
+label {
+    margin-right: 0.5rem;
+    font-size: 1.25rem;
+    color: var(--light-accent);
+    user-select: none;
+}
+
+input {
+    font-family: 'Jaldi', sans-serif;
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid var(--light-accent);
+    padding: max(0.5rem, 1.35vh) 0.25rem;
+    width: 100%;
+    margin: 0.25rem 0.4rem;
+    transition:
+        border-color 200ms ease-in-out,
+        border-bottom-width 200ms ease-in-out;
+}
+
+input:focus {
+    outline: none;
+}
+
+/* hack to remove autofill styles */
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    transition:
+        background-color 600000s 0s,
+        color 600000s 0s;
+}
+
+button {
+    padding: 0.75rem 1.75rem;
+    display: block;
+    position: relative;
+    width: 100%;
+    color: white;
+    font-weight: bold;
+    background: var(--bold-accent);
+    border: none;
+    border-radius: 6px;
+    font-family: 'Manrope', sans-serif;
+    margin: 1.25rem 0 1rem;
+    transition: background-color 500ms ease;
+    cursor: pointer;
+    user-select: none;
+}
+
+.form-container {
+    position: relative;
+    top: -2rem;
+    padding: 0 1.75rem;
+}
+
+.form-inputs {
+    margin-bottom: 0.5rem;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    transition: transform 200ms ease-in-out;
+}
+
+.input-group:first-child i {
+    margin-right: 3.1px;
+}
+
+.lock {
+    width: 1.25rem;
+}
+
+.legal {
+    display: block;
+    margin-top: 0.25rem;
+    line-height: 1.1rem;
+    font-size: 0.675rem;
+    max-width: 45ch;
+}
+
+.login-text {
+    display: block;
+    text-align: center;
+}
+
+.media-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    user-select: none;
+}
+
+.vector {
+    max-width: 510px;
+    width: 100%;
+    max-height: 45vh;
+    min-height: 350px;
+    object-fit: cover;
+}
+
+.blur {
+    display: none;
+}
+
+.active {
+    transform: scale(1.03);
+    border-color: var(--bold-accent);
+    border-bottom-width: 2px;
+}
+
+.valid {
+    border-color: var(--valid);
+    border-bottom-width: 2px;
+}
+
+.invalid {
+    border-color: var(--invalid);
+    border-bottom-width: 2px;
+}
+
+.input-group {
+    position: relative;
+}
+
+.indicator {
+    position: absolute;
+    display: flex;
+    bottom: -4px;
+    width: 100%;
+    max-width: 120px;
+}
+
+.indicator > span {
+    display: block;
+    width: 33%;
+    height: 2.5px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.indicator > span:nth-child(2) {
+    margin: 0 0.25rem;
+}
+
+.hide {
+    display: none !important;
+}
+
+.transparent {
+    background-color: transparent !important;
+}
+
+.invisible {
+    visibility: hidden !important;
+}
+
+.weak {
+    background-color: var(--invalid);
+}
+
+.medium {
+    background-color: #fce730;
+}
+
+.strong {
+    background-color: var(--valid);
+}
+
+.error {
+    color: var(--invalid);
+    font-size: 0.8rem;
+    padding: 0.25rem 0.4rem;
+    min-width: max-content;
+    position: absolute;
+    right: 103.5%;
+    background: rgba(255, 255, 255, 0.836);
+    border: 1px solid var(--invalid);
+    border-radius: 4px;
+    animation: fade-in 750ms ease-in-out;
+    display: none;
+}
+
+.shake {
+    animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    transition: background-color 500ms ease;
+}
+
+.fadeout {
+    animation: fade-out 1000ms ease;
+    animation-delay: 1500ms;
+}
+
+/* for animated checkmark */
+.checkmark {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) !important;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 2;
+    stroke: hsl(94, 51%, 51%);
+    stroke-miterlimit: 10;
+    box-shadow: inset 0px 0px 0px hsl(94, 51%, 51%);
+    transition:
+        height 600ms linear,
+        width 600ms linear;
+}
+
+.checkmark-circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke: #ffffff;
+    fill: #ffffff;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark-check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke 0.4s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+.grow {
+    height: 28px;
+    width: 28px;
+}
+
+.attr {
+    display: none;
+    position: absolute;
+    color: var(--light-accent);
+    left: 15%;
+    bottom: 15%;
+    font-size: 0.45rem;
+}
+
+@keyframes stroke {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes shake {
+    10%,
+    90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+    20%,
+    80% {
+        transform: translate3d(2px, 0, 0);
+    }
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+    40%,
+    60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
+@media (min-width: 720px) {
+    html {
+        font-size: 110%;
+    }
+
+    body,
+    body::before {
+        background: url(../images/assets/login-signup/blob-lg.svg) no-repeat;
+        background-size: cover;
+    }
+
+    body {
+        display: grid;
+        place-items: center;
+    }
+
+    /* sets blur mask (works for firefox) */
+    body::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        filter: blur(7px);
+        clip-path: var(--mask);
+    }
+
+    main {
+        flex-direction: row;
+        align-items: center;
+        max-width: 1200px;
+        height: fit-content;
+        margin: 0 1rem;
+        padding: 2.25rem 0;
+        background-color: #e5f4ff75;
+        border: 5px solid #e5f4ff;
+        border-radius: 10px;
+        box-sizing: border-box;
+    }
+
+    .blur {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+    }
+
+    .error {
+        display: block;
+    }
+
+    .form-container {
+        min-width: 340px;
+        padding: 0;
+        padding-right: 0.5rem;
+    }
+
+    .vector {
+        max-height: 100%;
+    }
+}
+
+@media (min-width: 1080px) {
+    main {
+        padding: 2.5rem 3rem;
+        padding-left: 1rem;
+    }
+
+    h1 {
+        font-size: 2.25rem;
+    }
+
+    .error {
+        left: 100%;
+    }
+
+    .vector {
+        max-width: 520px;
+    }
+
+    .attr {
+        display: block;
+    }
+}
+
+@media (min-width: 1320px) {
+    html {
+        font-size: 112.5%;
+    }
+
+    .error {
+        left: 100%;
+    }
+}

@@ -35,6 +35,9 @@ exports.get_user_by_email = asyncHandler(async (req, res, next) => {
             email: req.body.email,
         },
     });
+    if (!result) {
+        return next({ statusCode: 404, message: `Email doesn't exists` });
+    }
     res.status(200).json({ success: true, status: 200, result });
 });
 
@@ -116,9 +119,6 @@ exports.put_user_password = asyncHandler(async (req, res, next) => {
 
 // PUT email
 exports.put_user_email = asyncHandler(async (req, res, next) => {
-    if (!req.body.email) {
-        return next({ statusCode: 400, message: 'Please include email' });
-    }
     await req.prisma.user.update({
         where: {
             id: req.body.id,

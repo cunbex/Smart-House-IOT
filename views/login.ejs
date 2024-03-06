@@ -1,0 +1,38 @@
+<section class="media-container">
+  <img class="vector" src="images/assets/login-signup/data-analysis-illustration.svg" alt="vector drawing" />
+</section>
+<section class="form-container">
+  <h1>Log in</h1>
+  <form spellcheck="false" autocomplete="off">
+
+    <div class="input-group">
+      <div class="error hide">Email is not valid</div>
+      <label for="email"><i class="fa-regular fa-at"></i></label>
+      <input type="email" id="email" placeholder="Email" name="email" required />
+    </div>
+
+    <div class="input-group">
+      <div class="error hide">Password is not strong enough</div>
+      <label for="password"><img class="lock" src="images/assets/login-signup/lock.svg" alt="lock" /></label>
+      <input id="password" type="password" placeholder="Password" name="password" required />
+      <div class="indicator hide">
+        <span class="weak"></span>
+        <span class="medium transparent"></span>
+        <span class="strong transparent"></span>
+      </div>
+    </div>
+
+    <small class="legal">
+      By signing up, you are agreeing to our
+      <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>
+    </small>
+    <button id="logInButton">
+      <span>Continue</span>
+      <svg class="checkmark hide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+        <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none" />
+        <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+      </svg>
+    </button>
+    <small class="login-text">Don't have an account? <a href="signup">Sign up</a> </small>
+  </form>
+</section>

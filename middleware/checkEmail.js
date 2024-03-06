@@ -2,7 +2,7 @@ const asyncHandler = require('express-async-handler');
 
 // checkID middleware
 
-const checkEmail = asyncHandler(async (req, res, next) => {
+const checkEmailValid = asyncHandler(async (req, res, next) => {
     const userEmail = req.body.email;
     if (!userEmail) {
         return next({ statusCode: 400, message: 'no email provided' });
@@ -18,4 +18,20 @@ const checkEmail = asyncHandler(async (req, res, next) => {
     next();
 });
 
-module.exports = checkEmail;
+const checkEmailInvalid = asyncHandler(async (req, res, next) => {
+    const userEmail = req.body.email;
+    if (!userEmail) {
+        return next({ statusCode: 400, message: 'no email provided' });
+    }
+    const result = await req.prisma.user.findUnique({
+        where: {
+            email: userEmail,
+        },
+    });
+    if (!result) {
+        return next({ statusCode: 401, message: 'Invalid Email' });
+    }
+    next();
+});
+
+module.exports = { checkEmailValid, checkEmailInvalid };
