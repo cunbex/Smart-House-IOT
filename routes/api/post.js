@@ -23,7 +23,7 @@ router.post(
         res.status(200).json({
             success: true,
             message: 'User Authenticated',
-            url: '/user-dashboard',
+            url: '/dashboard',
         });
     },
 );

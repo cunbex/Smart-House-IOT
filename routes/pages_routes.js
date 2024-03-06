@@ -8,14 +8,14 @@ router.get('/', (req, res, next) => {
         return res.render('index', {
             title: 'Smart House',
             state: 'My Account',
-            value: 'user-Dashboard',
+            value: 'dashboard',
             layout: './layouts/landing',
         });
     }
     res.render('index', {
         title: 'Smart House',
         state: 'Get started',
-        value: 'signup',
+        value: 'login',
         layout: './layouts/landing',
     });
 });
@@ -26,14 +26,14 @@ router.get('/about', (req, res, next) => {
         return res.render('about', {
             title: 'About',
             state: 'My Account',
-            value: 'user-Dashboard',
+            value: 'dashboard',
             layout: './layouts/landing',
         });
     }
     res.render('about', {
         title: 'About',
         state: 'Get started',
-        value: 'signup',
+        value: 'login',
         layout: './layouts/landing',
     });
 });
@@ -44,14 +44,14 @@ router.get('/careers', (req, res, next) => {
         return res.render('careers', {
             title: 'Careers',
             state: 'My Account',
-            value: 'user-Dashboard',
+            value: 'dashboard',
             layout: './layouts/landing',
         });
     }
     res.render('careers', {
         title: 'Careers',
         state: 'Get started',
-        value: 'signup',
+        value: 'login',
         layout: './layouts/landing',
     });
 });
@@ -62,14 +62,14 @@ router.get('/location', (req, res, next) => {
         return res.render('location', {
             title: 'Location',
             state: 'My Account',
-            value: 'user-Dashboard',
+            value: 'dashboard',
             layout: './layouts/landing',
         });
     }
     res.render('location', {
         title: 'Location',
         state: 'Get started',
-        value: 'signup',
+        value: 'login',
         layout: './layouts/landing',
     });
 });
@@ -77,13 +77,10 @@ router.get('/location', (req, res, next) => {
 /* GET Login page. */
 router.get('/login', (req, res, next) => {
     if (req.isAuthenticated()) {
-        return res.render('user-Dashboard', {
-            title: 'user-Dashboard',
-            layout: './layouts/dashboard',
-        });
+        return res.redirect('dashboard');
     }
     res.render('login', {
-        title: 'Login',
+        title: 'Log In',
         layout: './layouts/login-signup',
     });
 });
@@ -91,10 +88,7 @@ router.get('/login', (req, res, next) => {
 /* GET Signup page. */
 router.get('/signup', (req, res, next) => {
     if (req.isAuthenticated()) {
-        return res.render('user-Dashboard', {
-            title: 'user-Dashboard',
-            layout: './layouts/dashboard',
-        });
+        return res.redirect('dashboard');
     }
     res.render('signup', {
         title: 'Sign Up',
@@ -102,14 +96,50 @@ router.get('/signup', (req, res, next) => {
     });
 });
 
-/*
+/* GET Dashboard page. */
+router.get('/dashboard', (req, res, next) => {
+    if (req.isAuthenticated()) {
+        return res.render('dashboard', {
+            title: 'Dashboard',
+            user: req.user,
+            layout: './layouts/dashboard',
+        });
+    }
+    res.redirect('login');
+});
+
+/* GET Devices page. */
+router.get('/devices', (req, res, next) => {
+    if (req.isAuthenticated()) {
+        return res.render('devices', {
+            title: 'Devices',
+            user: req.user,
+            layout: './layouts/dashboard',
+        });
+    }
+    res.redirect('login');
+});
+
+/* GET Settings page. */
+router.get('/Settings', (req, res, next) => {
+    if (req.isAuthenticated()) {
+        return res.render('settings', {
+            title: 'Settings',
+            user: req.user,
+            layout: './layouts/dashboard',
+        });
+    }
+    res.redirect('login');
+});
+
+/* Log out */
 router.get('/logout', (req, res, next) => {
     req.logout((err) => {
         if (err) {
             return next(err);
         }
-        res.redirect('/user/protected-route');
+        res.redirect('/');
     });
-}); */
+});
 
 module.exports = router;
