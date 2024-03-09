@@ -28,7 +28,7 @@ img {
 main {
     grid-column-start: 2;
     display: grid;
-    grid-template-rows: auto auto 1fr auto;
+    grid-template-rows: 0.1fr 0.1fr 3fr 0.1fr;
     grid-template-columns: repeat(8, 1fr);
     padding: 0 1.5rem 1.5rem;
     max-height: 100%;
@@ -336,7 +336,7 @@ header > div {
 .info-card {
     border: 2px solid #dfe0eb;
     border-radius: 0.5rem;
-    background: #fff;
+    background: #eaeaea;
     text-align: center;
     font-weight: bold;
     padding: 1.5rem 0;
@@ -351,7 +351,7 @@ header > div {
 }
 
 .info-card > p:first-child {
-    color: #9fa2b4;
+    color: #3a3a3ab2;
     font-size: 1.1rem;
 }
 
@@ -448,163 +448,6 @@ header > div {
     }
 }
 
-/* large cards section */
-.lg-cards {
-    grid-row: 4;
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    margin-top: 1.5rem;
-}
-
-@media (max-width: 1080px) {
-    .lg-cards {
-        grid-template-columns: 1fr;
-    }
-}
-
-.lg-card {
-    border: 1.65px solid #dfe0eb;
-    border-radius: 0.5rem;
-    background: #fff;
-    font-weight: bold;
-    padding-bottom: 0.3rem;
-}
-
-.lg-card-num {
-    color: #9fa2b4;
-}
-
-.card-header {
-    padding: 1.65rem 1.75rem 1.25rem;
-}
-
-.card-header > p {
-    font-size: 0.75rem;
-    font-weight: 400;
-    color: #9fa2b4;
-    margin-top: 0.5rem;
-}
-
-.card-header span {
-    color: #252733;
-}
-
-.card-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-}
-
-.card-title > h2 {
-    color: #252733;
-    font-size: 1.15rem;
-}
-
-.card-title > a {
-    color: #3751ff;
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: transform 0.25s ease-in-out;
-}
-
-.card-title > a:hover,
-.card-title > a:focus {
-    transform: scale(1.04);
-}
-
-.card-header ~ div {
-    border-bottom: 2px solid #dfe0eb;
-    width: calc(100% + 2px);
-    transform: translateX(-1px);
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: #252733;
-    max-height: 3.5rem;
-    padding: 1.15rem 1.75rem;
-    display: flex;
-    justify-content: space-between;
-}
-
-.card-header ~ div:last-child {
-    border: none;
-}
-
-.badge {
-    position: absolute;
-    right: 1.5rem;
-    top: 50%;
-    transform: translateY(-50%);
-    background: #f0f1f7;
-    color: #9fa2b4;
-    padding: 0.35rem 0.85rem;
-    border-radius: 8px;
-    font-size: 0.6875rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    user-select: none;
-}
-
-/* checkbox styling */
-.checkbox-container {
-    display: flex;
-    align-items: center;
-}
-
-.checkbox {
-    position: relative;
-}
-
-input[type='checkbox'] {
-    opacity: 0;
-    margin-right: 1.125rem;
-}
-
-.checkbox > label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-radius: 50%;
-    width: 22px;
-    height: 22px;
-    border: 3px solid #c5c7cd;
-    cursor: pointer;
-    background: #fff;
-}
-
-label::after {
-    content: '';
-    opacity: 0;
-    position: absolute;
-    top: 33%;
-    left: 22%;
-    border: 3px solid white;
-    border-top: none;
-    border-right: none;
-    transform: rotate(-45deg);
-    width: 12px;
-    height: 6px;
-}
-
-input[type='checkbox']:checked + label {
-    background: #3751ff;
-    border: none;
-}
-
-input[type='checkbox']:hover:not(:checked) + label {
-    background: #ebeeff;
-}
-
-input[type='checkbox']:hover:checked + label {
-    box-shadow: 0 0 8px 0 #a0a0a0a0;
-}
-
-input[type='checkbox']:checked + label::after {
-    opacity: 1;
-}
-
 /* make fonts/spacing smaller on small devices */
 @media (max-width: 380px) {
     html {
@@ -616,4 +459,28 @@ input[type='checkbox']:checked + label::after {
     html {
         font-size: 14px;
     }
+}
+
+.settings {
+    grid-row: 3;
+    grid-column: 1 / -1;
+    padding: 10%;
+    border: 2px solid #dfe0eb;
+    border-radius: 0.5rem;
+    background: #eaeaea;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.informations {
+    display: flex;
+    gap: 1.5rem;
+    width: 100%;
+    flex-direction: column;
+}
+.informations form {
+    width: 100%;
 }
