@@ -23,7 +23,7 @@ async function uploadAvatar() {
 
         // Make an API request to upload the image using fetch
         const response = await fetch(
-            'http://localhost:8080/api/user/post/picture',
+            'https://smart-house-iot.onrender.com/api/user/post/picture',
             {
                 method: 'POST',
                 body: formData,
@@ -66,7 +66,7 @@ async function updateName() {
 
     try {
         const response = await fetch(
-            `http://localhost:8080/api/user/put/name`,
+            `https://smart-house-iot.onrender.com/api/user/put/name`,
             {
                 method: 'PUT',
                 headers: {
@@ -108,7 +108,7 @@ async function updatePassword() {
 
     try {
         const response = await fetch(
-            `http://localhost:8080/api/user/put/password`,
+            `https://smart-house-iot.onrender.com/api/user/put/password`,
             {
                 method: 'PUT',
                 headers: {
