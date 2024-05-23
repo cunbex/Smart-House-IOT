@@ -18,7 +18,8 @@ async function checkController() {
             },
         );
         if (response.ok) {
-            console.log(response);
+            const data = await response.json();
+            console.log(data.Controller);
         }
     } catch (error) {
         console.error('Error:', error);
