@@ -18,7 +18,7 @@ model Session {
   data      String
   expiresAt DateTime
   createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model User {
@@ -26,30 +26,30 @@ model User {
   email      String       @unique
   name       String
   password   String
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
   picture    String
   Controller Controller[]
-  createdAt  DateTime     @default(now())
-  updatedAt  DateTime
 }
 
 model Controller {
   id        String    @id @unique
   active    Boolean   @default(false)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   topics    String
   userId    String?
   password  String    @default("0000")
   User      User?     @relation(fields: [userId], references: [id])
   Devices   Devices[]
-  createdAt DateTime  @default(now())
-  updatedAt DateTime
 }
 
 model Devices {
   uuid               String      @id @unique
+  controllerId       String?
+  createdAt          DateTime    @default(now())
+  updatedAt          DateTime    @updatedAt
   CharacteristicName String      @default("")
   deviceName         String      @default("")
   Controller         Controller? @relation(fields: [controllerId], references: [id])
-  controllerId       String?
-  createdAt          DateTime    @default(now())
-  updatedAt          DateTime
 }
