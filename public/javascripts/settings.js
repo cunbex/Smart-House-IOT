@@ -19,7 +19,18 @@ async function checkController() {
         );
         if (response.ok) {
             const data = await response.json();
-            console.log(data.Controller);
+            if (data.result.Controller[0]) {
+                document.getElementById('floating_controller').remove();
+                document.querySelector('#controller_label').remove();
+                document
+                    .querySelector('#controller_button1')
+                    .setAttribute('hidden', true);
+                document
+                    .querySelector('#controller_button2')
+                    .removeAttribute('hidden');
+                document.querySelector('#controller_button2').textContent =
+                    `Unpair controller: ${data.result.Controller[0].id}`;
+            }
         }
     } catch (error) {
         console.error('Error:', error);
@@ -161,14 +172,14 @@ async function updatePassword() {
     }
 }
 
-// Attach the event listener to the Device update form
-const controllerForm = document.getElementById('controllerForm');
-controllerForm.addEventListener('submit', async (event) => {
+// Attach the event listener to the controller update form (pair)
+const controllerButton1 = document.getElementById('controller_button1');
+controllerButton1.addEventListener('click', async (event) => {
     event.preventDefault(); // Prevent the default form submission behavior
-    await updateController();
+    await updateController1();
 });
 
-async function updateController() {
+async function updateController1() {
     const controllerInpunt = document.getElementById(
         'floating_controller',
     ).value;
@@ -199,6 +210,50 @@ async function updateController() {
             throw new Error(
                 'Failed to update Controller/Controller ID already taken.',
             );
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert(error);
+    }
+}
+
+// Attach the event listener to the controller update form (unpair)
+const controllerButton2 = document.getElementById('controller_button2');
+controllerButton2.addEventListener('click', async (e) => {
+    e.preventDefault(); // Prevent the default form submission behavior
+    await updateController2(e);
+});
+
+async function updateController2(e) {
+    try {
+        let uuid;
+        const str = e.target.textContent;
+        // Regular expression to match a UUID
+        const uuidPattern =
+            /[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/;
+
+        // Extract the UUID
+        const match = str.match(uuidPattern);
+        if (match) {
+            uuid = match[0];
+        }
+        const response = await fetch(
+            `https://mosquitto-api.onrender.com/controller/update/userId`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id: uuid,
+                    userId: null,
+                }),
+            },
+        );
+        if (response.ok) {
+            alert('Controller removed successfully!');
+            // Redirect to the 'settings' page after successful update
+            window.location.href = '/settings';
         }
     } catch (error) {
         console.error('Error:', error);
