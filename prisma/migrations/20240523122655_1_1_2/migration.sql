@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Controller" ALTER COLUMN "password" SET DEFAULT '0000',
+ALTER COLUMN "password" SET DATA TYPE TEXT;

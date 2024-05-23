@@ -34,14 +34,14 @@ model Session {
 
 model Controller {
   id        String    @id @unique
-  password  Int       @default(0000)
+  password  String    @default("0000")
   active    Boolean   @default(false)
   topics    String
   User      User?     @relation(fields: [userId], references: [id])
   userId    String?
+  Devices   Devices[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @default(now()) @updatedAt
-  Devices   Devices[]
 }
 
 model Devices {
