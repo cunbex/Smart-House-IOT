@@ -12,36 +12,36 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-model User {
-  id          String       @id @unique
-  email       String       @unique
-  name        String
-  password    String
-  picture     String
-  controllers Controller[]
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
-}
-
 model Session {
   id        String   @id
   sid       String   @unique
   data      String
   expiresAt DateTime
   createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
+  updatedAt DateTime @default(now())
+}
+
+model User {
+  id         String       @id @unique
+  email      String       @unique
+  name       String
+  password   String
+  picture    String
+  Controller Controller[]
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime
 }
 
 model Controller {
   id        String    @id @unique
   active    Boolean   @default(false)
   topics    String
+  userId    String?
   password  String    @default("0000")
   User      User?     @relation(fields: [userId], references: [id])
-  userId    String?
   Devices   Devices[]
   createdAt DateTime  @default(now())
-  updatedAt DateTime  @default(now())
+  updatedAt DateTime
 }
 
 model Devices {
@@ -51,5 +51,5 @@ model Devices {
   Controller         Controller? @relation(fields: [controllerId], references: [id])
   controllerId       String?
   createdAt          DateTime    @default(now())
-  updatedAt          DateTime    @default(now())
+  updatedAt          DateTime
 }
