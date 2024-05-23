@@ -1,4 +1,37 @@
 const userId = document.getElementById('user_id');
+// Attach the event listener to the webpage load
+window.addEventListener('load', (e) => {
+    checkController();
+});
+async function checkController() {
+    try {
+        const response = await fetch(
+            `https://smart-house-iot.onrender.com/api/user/get/byid`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id: userId.textContent,
+                }),
+            },
+        );
+        if (response.ok) {
+            console.log(response);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert(error);
+    }
+}
+// Attach the event listener to the form
+const avatarForm = document.getElementById('avatarForm');
+avatarForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    await uploadAvatar();
+});
+
 async function uploadAvatar() {
     try {
         const fileInput = document.getElementById('user_avatar');
@@ -41,13 +74,6 @@ async function uploadAvatar() {
         alert('An error occurred. Please try again.');
     }
 }
-
-// Attach the event listener to the form
-const avatarForm = document.getElementById('avatarForm');
-avatarForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    await uploadAvatar();
-});
 
 // Attach the event listener to the form
 const nameForm = document.getElementById('nameForm');
@@ -131,5 +157,50 @@ async function updatePassword() {
     } catch (error) {
         console.error('Error:', error);
         alert('Something happened');
+    }
+}
+
+// Attach the event listener to the Device update form
+const controllerForm = document.getElementById('controllerForm');
+controllerForm.addEventListener('submit', async (event) => {
+    event.preventDefault(); // Prevent the default form submission behavior
+    await updateController();
+});
+
+async function updateController() {
+    const controllerInpunt = document.getElementById(
+        'floating_controller',
+    ).value;
+    if (!controllerInpunt.trim()) {
+        alert('Please enter a valid controller.');
+        return;
+    }
+    try {
+        const response = await fetch(
+            `https://mosquitto-api.onrender.com/controller/update/userId`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id: controllerInpunt,
+                    userId: userId.textContent,
+                }),
+            },
+        );
+
+        if (response.ok) {
+            alert('Controller updated successfully!');
+            // Redirect to the 'settings' page after successful update
+            window.location.href = '/settings';
+        } else {
+            throw new Error(
+                'Failed to update Controller/Controller ID already taken.',
+            );
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert(error);
     }
 }

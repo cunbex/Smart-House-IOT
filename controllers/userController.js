@@ -47,6 +47,9 @@ exports.get_user_by_id = asyncHandler(async (req, res, next) => {
         where: {
             id: req.body.id,
         },
+        include: {
+            Controller: true,
+        },
     });
     res.status(200).json({ success: true, status: 200, result });
 });
