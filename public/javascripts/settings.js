@@ -1,6 +1,6 @@
 const userId = document.getElementById('user_id');
 // Attach the event listener to the webpage load
-window.addEventListener('load', (e) => {
+window.addEventListener('load', () => {
     checkController();
 });
 async function checkController() {
