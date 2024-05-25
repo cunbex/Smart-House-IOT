@@ -189,7 +189,7 @@ async function updateController1() {
     }
     try {
         const response = await fetch(
-            `https://mosquitto-api.onrender.com/controller/update/userId`,
+            `https://mosquitto-api.onrender.com/api/controller/update/userId`,
             {
                 method: 'POST',
                 headers: {
@@ -238,7 +238,7 @@ async function updateController2(e) {
             uuid = match[0];
         }
         const response = await fetch(
-            `https://mosquitto-api.onrender.com/controller/update/userId`,
+            `https://mosquitto-api.onrender.com/api/controller/update/userId`,
             {
                 method: 'POST',
                 headers: {
