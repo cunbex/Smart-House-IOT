@@ -188,7 +188,7 @@ async function updateController1() {
         return;
     }
     try {
-        const response = await fetch(
+        let response = await fetch(
             `https://mosquitto-api.onrender.com/api/controller/update/userId`,
             {
                 method: 'POST',
@@ -198,10 +198,22 @@ async function updateController1() {
                 body: JSON.stringify({
                     id: controllerInpunt,
                     userId: userId.textContent,
+                    state: 'add',
                 }),
             },
         );
-
+        response = await fetch(
+            `http://localhost:8080/api/mqtt/post/subscribe`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id: controllerInpunt,
+                }),
+            },
+        );
         if (response.ok) {
             alert('Controller updated successfully!');
             // Redirect to the 'settings' page after successful update
@@ -237,7 +249,7 @@ async function updateController2(e) {
         if (match) {
             uuid = match[0];
         }
-        const response = await fetch(
+        let response = await fetch(
             `https://mosquitto-api.onrender.com/api/controller/update/userId`,
             {
                 method: 'POST',
@@ -246,7 +258,20 @@ async function updateController2(e) {
                 },
                 body: JSON.stringify({
                     id: uuid,
-                    userId: null,
+                    userId: userId.textContent,
+                    state: 'remove',
+                }),
+            },
+        );
+        response = await fetch(
+            `http://localhost:8080/api/mqtt/post/unsubscribe`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id: uuid,
                 }),
             },
         );

@@ -134,6 +134,7 @@ router.get('/Settings', (req, res, next) => {
 
 /* Log out */
 router.get('/logout', (req, res, next) => {
+    req.session.mqtt = false;
     req.logout((err) => {
         if (err) {
             return next(err);

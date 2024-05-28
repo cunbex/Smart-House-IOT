@@ -11,13 +11,13 @@ const checkID = require('../../middleware/checkID.js');
 const upload = multerConfig;
 const router = express.Router();
 
-// Post endpoints
-router.post('/get/byid', checkID, userController.get_user_by_id);
-router.post('/get/byemail', userController.get_user_by_email);
-router.post('/post/record', checkEmailValid, userController.post_user);
-router.post('/post/picture', upload, userController.post_user_picture);
+// USER Post endpoints
+router.post('/user/get/byid', checkID, userController.get_user_by_id);
+router.post('/user/get/byemail', userController.get_user_by_email);
+router.post('/user/post/record', checkEmailValid, userController.post_user);
+router.post('/user/post/picture', upload, userController.post_user_picture);
 router.post(
-    '/post/login',
+    '/user/post/login',
     checkAccValid,
     passport.authenticate('local', {
         failureMessage: true,

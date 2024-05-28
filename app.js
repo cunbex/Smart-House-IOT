@@ -12,7 +12,11 @@ const expressLayouts = require('express-ejs-layouts');
 
 require('dotenv').config();
 
+const prisma = new PrismaClient();
 const errorHandler = require('./middleware/errorHandler');
+const { mqttConnect } = require('./controllers/mqttController');
+const { mqttEvents } = require('./controllers/mqttController');
+
 // import routes
 const pagesRouter = require('./routes/pages_routes');
 const usersRouter = require('./routes/api/user');
@@ -28,8 +32,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 require('./services/passport');
+
+// Middleware to attach Prisma client to the request object
+app.use((req, res, next) => {
+    req.prisma = prisma;
+    next();
+});
 
 // Use express-session middleware globally
 app.use(
@@ -52,21 +61,14 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-/*
-app.use(async (req, res, next) => {
-    console.log(req.session);
-    console.log(req.user);
-    next();
-});
-*/
-
 // view engine setup
 app.use(expressLayouts);
-app.set('layout', './layouts/baseLayout');
+app.set('layout', './layouts/landing');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // Dynamic routes
+app.use(mqttConnect, mqttEvents);
 app.use('/', pagesRouter);
 app.use('/api', usersRouter);
 

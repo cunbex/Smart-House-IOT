@@ -6,6 +6,5 @@ const userController = require('../../controllers/userController.js');
 const router = express.Router();
 
 // Delete endpoints
-router.delete('/delete/record', checkID, userController.delete_user);
-
+router.delete('/user/delete/record', checkID, userController.delete_user);
 module.exports = router;
