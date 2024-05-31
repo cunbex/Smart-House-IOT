@@ -133,7 +133,7 @@ router.get('/Settings', (req, res, next) => {
 });
 
 /* Log out */
-router.get('/logout', (req, res, next) => {
+router.get('/logout', async (req, res, next) => {
     req.session.mqtt = false;
     req.logout((err) => {
         if (err) {

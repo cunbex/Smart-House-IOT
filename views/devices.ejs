@@ -1,5 +1,4 @@
  <head>
-   <script src="javascripts/device.js" defer></script>
    <style>
      @import url("https://fonts.googleapis.com/css?family=Amarante");
 
@@ -54,6 +53,14 @@
        line-height: 1.7em;
        margin-bottom: 10px;
        text-align: center;
+     }
+
+     .options {
+       display: flex;
+       height: 5em;
+       flex-direction: row;
+       justify-content: end;
+       align-items: center;
      }
 
      /** page structure **/
@@ -134,7 +141,7 @@
          <td>0x4442</td>
          <td>05a6bc5b-09e3-4303-93bd-3b02b2b854e4</td>
          <td>2024-05-21 01:37:24.002</td>
-         <td><input type="text" name="capteurGaz" id="consommationGaz" placeholder="55 WH"></td>
+         <td class="options"><input type="text" name="capteurGaz" id="consommationGaz" placeholder="55 WH"><button id="writeDataButtons">Write</button></td>
        </tr>
        <tr>
          <td class="lalign">Capteur GAZ</td>
@@ -142,7 +149,7 @@
          <td>0x4441</td>
          <td>05a6bc5b-09e3-4303-93bd-3b02b2b854e4</td>
          <td>2024-05-21 01:37:24.002</td>
-         <td><input type="text" name="capteurGaz" id="status" placeholder="On"></td>
+         <td class="options"><input type="text" name="capteurGaz" id="status" placeholder="On"><button id="writeDataButtons">Write</button></td>
        </tr>
        <tr>
          <td class="lalign">Capteur multifonction</td>
@@ -150,7 +157,7 @@
          <td>0x3334</td>
          <td>05a6bc5b-09e3-4303-93bd-3b02b2b854e4</td>
          <td>2024-05-21 01:37:24.002</td>
-         <td><input type="number" name="capteurMultifonction" id="humidité" placeholder="40%"></td>
+         <td class="options"><input type="number" name="capteurMultifonction" id="humidite" placeholder="40%"><button id="writeDataButtons">Write</button></td>
        </tr>
        <tr>
          <td class="lalign">Capteur multifonction</td>
@@ -158,7 +165,7 @@
          <td>0x3332</td>
          <td>05a6bc5b-09e3-4303-93bd-3b02b2b854e4</td>
          <td>2024-05-21 01:22:24.002</td>
-         <td><input type="number" name="capteurMultifonction" id="niveauCO2" placeholder="30 PPM"></td>
+         <td class="options"><input type="number" name="capteurMultifonction" id="niveauCo2" placeholder="30 PPM"><button id="writeDataButtons">Write</button></td>
        </tr>
        <tr>
          <td class="lalign">Capteur multifonction</td>
@@ -166,7 +173,7 @@
          <td>0x3331</td>
          <td>05a6bc5b-09e3-4303-93bd-3b02b2b854e4</td>
          <td>2024-05-21 17:47:24.002</td>
-         <td><input type="number" name="capteurMultifonction" id="température	" placeholder="10°C"></td>
+         <td class="options"><input type="number" name="capteurMultifonction" id="temperature" placeholder="10°C"><button id="writeDataButtons">Write</button></td>
        </tr>
      </tbody>
    </table>
