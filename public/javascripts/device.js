@@ -55,7 +55,7 @@ function addTableRow(
     tableBody.appendChild(newRow);
 }
 
-const ws = new WebSocket('ws://smart-house-iot.onrender.com');
+const ws = new WebSocket('wss://smart-house-iot.onrender.com');
 
 ws.onopen = () => {
     console.log('Connected to WebSocket server');
