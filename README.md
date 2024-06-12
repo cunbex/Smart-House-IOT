@@ -1,5 +1,4 @@
 # Smart House IoT
-
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/cunbex/Smart-House-IOT/blob/main/LICENSE)
 
 Smart House IoT is a project aimed at building a smart home system using Internet of Things (IoT) technologies.
@@ -12,6 +11,7 @@ Smart House IoT is a project aimed at building a smart home system using Interne
   - [Installation](#installation)
 - [Usage](#usage)
 - [Informations](#informations)
+- [Demo](#demo)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -88,6 +88,10 @@ After installation, you can run the project using `npm run devstart`.
 - A single-board computer is required.
 - Single-board computer code is on the controller-dashboard repository: [controller_dashboard](https://github.com/cunbex/controller_dashboard)
 - Mosquitto API code is on the mosquitto_api repository: [mosquitto_api](https://github.com/cunbex/mosquitto-api)
+
+### Demo
+
+screenshots for user dashboard & some console.log during the manipulation:
 
 ## Contributing
 
