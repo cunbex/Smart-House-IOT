@@ -11,7 +11,7 @@ Smart House IoT is a project aimed at building a smart home system using Interne
   - [Installation](#installation)
 - [Usage](#usage)
 - [Informations](#informations)
-- [Demo](#demo)
+- [Demo](#Demo)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -91,9 +91,51 @@ After installation, you can run the project using `npm run devstart`.
 - Mosquitto API code is on the mosquitto_api repository: [mosquitto_api](https://github.com/cunbex/mosquitto-api).
 
 ### Demo
+1. Landing page:
+   
+   ![Landing page](demo/1.png?raw=true)
+   
+2. Sign up page:
+   
+   ![Sign-up page](demo/2.png?raw=true)
+   
+3. Log in page:
+   
+   ![Log-in page](demo/3.png?raw=true)
+   
+4. User Dashboard - Setting page, when receiving confirmation of pairing success with a controller:
+   
+   ![Setting page](demo/4.png?raw=true)
+   
+5. User Dashboard - Setting page, after pairing an existing controller in the DB with a user account:
+   
+   ![Setting page](demo/5.png?raw=true)
+   
+6. User Dashboard - Devices page:
+   
+   ![Devices page](demo/6.png?raw=true)
+   
+7. Controller(RaspberryPi) log after scanning for an IOT device:
+    
+   ![Log after scanning](demo/7.png?raw=true)
+   
+8. Controller(RaspberryPi) log after connecting to an IOT device:
+    
+   ![Log after connecting](demo/8.png?raw=true)
+   
+9. Controller(RaspberryPi) log after recieving a value from an IOT device:
+    
+   ![Log after recieving a value](demo/9.png?raw=true)
 
-screenshots for user dashboard & some console.log during the manipulation:
+### Demo video
 
+I have made a simple video demonstration a basic experiment of my project:
+1. I had the raspberryPi on & all the repo's up also.
+2. Connected the simulated IOT devices with the controller using the controller dashboard.
+3. Paired the controller with the user in the user dashboard (SKIPPED in the video because my controller was already paired), and did WRITE/READ value's on my simulated devices.
+
+You can check it out here: https://drive.google.com/file/d/1IlTaaxwtkMrfE8qchtaBrxbRrn7dVUXT/view?usp=sharing
+   
 ## Contributing
 
 Contributions are welcome! If you'd like to contribute to this project, feel free to fork the repository and submit a pull request with your changes, or if you have questions & suggestions you can contact me on my email: hamzalagab.tech@gmail.com.
