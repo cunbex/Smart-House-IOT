@@ -25,22 +25,9 @@ const server = http.createServer(app);
  * Create WebSocket server.
  */
 const wss = new WebSocket.Server({ server });
-const { publishMessage } = require('../controllers/mqttClient');
 /**
  * Attach WebSocket server to app
  */
-wss.on('connection', (ws) => {
-    console.log('Client connected via WebSocket');
-    let data;
-    // Event handler for receiving messages
-    ws.on('message', (message) => {
-        data = JSON.parse(message);
-        publishMessage(data.controller, data.type, data.deviceName, data);
-    });
-    ws.on('close', () => {
-        console.log('Client disconnected via WebSocket');
-    });
-});
 app.set('wss', wss);
 
 /**

@@ -1,10 +1,10 @@
  <head>
    <style>
-     @import url("https://fonts.googleapis.com/css?family=Amarante");
-
      ol,
      ul {
        list-style: none;
+       padding: 0;
+       margin: 0;
      }
 
      input,
@@ -28,7 +28,6 @@
      q:before,
      q:after {
        content: "";
-       content: none;
      }
 
      strong,
@@ -39,6 +38,8 @@
      table {
        border-collapse: collapse;
        border-spacing: 0;
+       width: 100%;
+       margin-bottom: 20px;
      }
 
      img {
@@ -55,27 +56,21 @@
        text-align: center;
      }
 
-     .options {
-       display: flex;
-       height: 5em;
-       flex-direction: row;
-       justify-content: end;
-       align-items: center;
-     }
-
      /** page structure **/
      #wrapper {
        display: block;
        background: #fff;
-       margin: 0 auto;
-       padding: 10px 17px;
-       -webkit-box-shadow: 2px 2px 3px -1px rgba(0, 0, 0, 0.35);
+       margin: 20px auto;
+       padding: 20px;
+       -webkit-box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+       box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+       border-radius: 10px;
+       max-width: 1200px;
      }
 
      #keywords {
        margin: 0 auto;
-       font-size: 1.2em;
-       margin-bottom: 15px;
+       font-size: 1em;
      }
 
      #keywords thead {
@@ -87,6 +82,7 @@
        font-weight: bold;
        padding: 12px 30px;
        padding-left: 42px;
+       text-align: center;
      }
 
      #keywords thead tr th span {
@@ -110,15 +106,57 @@
 
      #keywords tbody tr {
        color: #555;
+       background: #fff;
+       transition: background 0.3s ease;
+     }
+
+     #keywords tbody tr:nth-child(odd) {
+       background: #f9f9f9;
+     }
+
+     #keywords tbody tr:hover {
+       background: #f1f1f1;
      }
 
      #keywords tbody tr td {
        text-align: center;
        padding: 15px 10px;
+       border-left: 1px solid #e0e0e0;
      }
 
      #keywords tbody tr td.lalign {
        text-align: left;
+       padding-left: 42px;
+     }
+
+     #keywords tbody tr td.options {
+       display: flex;
+       height: 10em;
+       gap: 4em;
+       flex-direction: row;
+       justify-content: center;
+       align-items: center;
+     }
+
+     #keywords tbody tr td.options input {
+       width: 150px;
+       border: 1px solid rgba(0, 0, 0, 0.341);
+       border-radius: 5px;
+       padding: 5px 10px;
+     }
+
+     #keywords tbody tr td.options button {
+       background: #007bff;
+       color: #fff;
+       border: none;
+       padding: 5px 10px;
+       border-radius: 5px;
+       cursor: pointer;
+       transition: background 0.3s ease;
+     }
+
+     #keywords tbody tr td.options button:hover {
+       background: #0056b3;
      }
    </style>
  </head>
@@ -130,51 +168,11 @@
          <th><span>Characteristic Name</span></th>
          <th><span>Characteristic ID</span></th>
          <th><span>Controller ID</span></th>
-         <th><span>Updated At</span></th>
          <th><span>Option</span></th>
        </tr>
      </thead>
      <tbody>
-       <tr>
-         <td class="lalign">Capteur GAZ</td>
-         <td>Consommation GAZ</td>
-         <td>0x4442</td>
-         <td>05a6bc5b-09e3-4303-93bd-3b02b2b854e4</td>
-         <td>2024-05-21 01:37:24.002</td>
-         <td class="options"><input type="text" name="capteurGaz" id="consommationGaz" placeholder="55 WH"><button id="writeDataButtons">Write</button></td>
-       </tr>
-       <tr>
-         <td class="lalign">Capteur GAZ</td>
-         <td>Status</td>
-         <td>0x4441</td>
-         <td>05a6bc5b-09e3-4303-93bd-3b02b2b854e4</td>
-         <td>2024-05-21 01:37:24.002</td>
-         <td class="options"><input type="text" name="capteurGaz" id="status" placeholder="On"><button id="writeDataButtons">Write</button></td>
-       </tr>
-       <tr>
-         <td class="lalign">Capteur multifonction</td>
-         <td>Humidité</td>
-         <td>0x3334</td>
-         <td>05a6bc5b-09e3-4303-93bd-3b02b2b854e4</td>
-         <td>2024-05-21 01:37:24.002</td>
-         <td class="options"><input type="number" name="capteurMultifonction" id="humidite" placeholder="40%"><button id="writeDataButtons">Write</button></td>
-       </tr>
-       <tr>
-         <td class="lalign">Capteur multifonction</td>
-         <td>Niveau CO2</td>
-         <td>0x3332</td>
-         <td>05a6bc5b-09e3-4303-93bd-3b02b2b854e4</td>
-         <td>2024-05-21 01:22:24.002</td>
-         <td class="options"><input type="number" name="capteurMultifonction" id="niveauCo2" placeholder="30 PPM"><button id="writeDataButtons">Write</button></td>
-       </tr>
-       <tr>
-         <td class="lalign">Capteur multifonction</td>
-         <td>Température</td>
-         <td>0x3331</td>
-         <td>05a6bc5b-09e3-4303-93bd-3b02b2b854e4</td>
-         <td>2024-05-21 17:47:24.002</td>
-         <td class="options"><input type="number" name="capteurMultifonction" id="temperature" placeholder="10°C"><button id="writeDataButtons">Write</button></td>
-       </tr>
+
      </tbody>
    </table>
  </div>

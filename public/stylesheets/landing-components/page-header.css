@@ -176,7 +176,7 @@
 
     .page-header__text {
         max-width: 405px;
-        margin-inline-start: 95px;
+        margin-inline-start: 0;
     }
 
     .page-header__text::before {
@@ -192,6 +192,6 @@
     }
 
     .page-header__button {
-        margin-inline-start: 95px;
+        margin-inline-start: 0;
     }
 }

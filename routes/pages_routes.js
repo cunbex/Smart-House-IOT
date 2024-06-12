@@ -99,7 +99,7 @@ router.get('/signup', (req, res, next) => {
 /* GET Dashboard page. */
 router.get('/dashboard', (req, res, next) => {
     if (req.isAuthenticated()) {
-        return res.render('dashboard', {
+        return res.render('settings', {
             title: 'Dashboard',
             user: req.user,
             layout: './layouts/dashboard',

@@ -188,7 +188,7 @@ async function updateController1() {
         return;
     }
     try {
-        let response = await fetch(
+        const response = await fetch(
             `https://mosquitto-api.onrender.com/api/controller/update/userId`,
             {
                 method: 'POST',
@@ -199,18 +199,6 @@ async function updateController1() {
                     id: controllerInpunt,
                     userId: userId.textContent,
                     state: 'add',
-                }),
-            },
-        );
-        response = await fetch(
-            `http://localhost:8080/api/mqtt/post/subscribe`,
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    id: controllerInpunt,
                 }),
             },
         );
@@ -249,8 +237,8 @@ async function updateController2(e) {
         if (match) {
             uuid = match[0];
         }
-        let response = await fetch(
-            `https://mosquitto-api.onrender.com/api/controller/update/userId`,
+        const response = await fetch(
+            `http://localhost:5500/api/controller/update/userId`,
             {
                 method: 'POST',
                 headers: {
@@ -260,18 +248,6 @@ async function updateController2(e) {
                     id: uuid,
                     userId: userId.textContent,
                     state: 'remove',
-                }),
-            },
-        );
-        response = await fetch(
-            `http://localhost:8080/api/mqtt/post/unsubscribe`,
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    id: uuid,
                 }),
             },
         );

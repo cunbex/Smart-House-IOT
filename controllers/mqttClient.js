@@ -1,6 +1,5 @@
 const mqtt = require('mqtt');
 const fs = require('fs');
-const WebSocket = require('ws');
 const { PrismaClient } = require('@prisma/client');
 
 const prisma = new PrismaClient();
@@ -16,11 +15,10 @@ const publishOptions = {
     dup: false,
 };
 const subscribeOptions = {
-    qos: 0,
+    qos: 1,
 };
 
 let mqttClient;
-
 const options = {
     protocolId: 'MQTT',
     protocolVersion: 4,
@@ -56,15 +54,29 @@ async function getClient(userId, wss) {
         mqttClient.on('close', () => {
             console.log('Disconnected...');
         });
-        mqttClient.on('message', (topic, message) => {
-            console.log(`RECEIVED: ${message} \n TOPIC: ${topic}`);
-            wss.clients.forEach((client) => {
-                if (client.readyState === WebSocket.OPEN) {
-                    client.send(message.toString());
+        wss.on('connection', async (ws) => {
+            await subscribeTopic(userId);
+            console.log('Client connected via WebSocket');
+            mqttClient.on('message', (topic, message) => {
+                console.log(`RECEIVED: ${message} \n TOPIC: ${topic}`);
+                ws.send(message.toString());
+            });
+            // Event handler for receiving messages
+            ws.on('message', (message) => {
+                const data = JSON.parse(message);
+                if (mqttClient) {
+                    publishMessage(
+                        data.controller,
+                        data.type,
+                        data.deviceName,
+                        data,
+                    );
                 }
             });
+            ws.on('close', () => {
+                console.log('Client disconnected via WebSocket');
+            });
         });
-        await subscribeTopic(userId);
     } else {
         // Update userId if client is already initialized
         mqttClient.options.username = userId;

@@ -26,7 +26,7 @@ router.post(
         res.status(200).json({
             success: true,
             message: 'User Authenticated',
-            url: '/dashboard',
+            url: '/settings',
         });
     },
 );
