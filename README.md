@@ -85,7 +85,7 @@ npm run devstart
 
 After installation, you can run the project using `npm run devstart`.
 
-### Informations
+## Informations
 
 - For the experiment to work, three repositories must be running either on the cloud or your machine: Smart-House-IOT, controller_dashboard, mosquitto_api.
 - Regarding PaaS used, i hosted the API's & website on render.com, the docker container that has MQTT/Mosquitto running on dockerHub & the database on supabase.com.
