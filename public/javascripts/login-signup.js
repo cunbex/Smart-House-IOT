@@ -179,15 +179,18 @@ if (document.querySelector('#signUpButton')) {
                     const inputValue = input.value;
                     inputValues[inputName] = inputValue;
                 });
-                fetch('http://localhost:8080/api/user/post/record', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        name: inputValues.name,
-                        email: inputValues.email,
-                        password: inputValues.password,
-                    }),
-                })
+                fetch(
+                    'https://smart-house-iot.onrender.com/api/user/post/record',
+                    {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            name: inputValues.name,
+                            email: inputValues.email,
+                            password: inputValues.password,
+                        }),
+                    },
+                )
                     .then((response) => response.json())
                     .then((data) => {
                         if (data.success === false && data.status === 409) {
@@ -257,14 +260,17 @@ if (document.querySelector('#logInButton')) {
                     const inputValue = input.value;
                     inputValues[inputName] = inputValue;
                 });
-                fetch('http://localhost:8080/api/user/post/login', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        email: inputValues.email,
-                        password: inputValues.password,
-                    }),
-                })
+                fetch(
+                    'https://smart-house-iot.onrender.com/api/user/post/login',
+                    {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            email: inputValues.email,
+                            password: inputValues.password,
+                        }),
+                    },
+                )
                     .then((response) => response.json())
                     .then((data) => {
                         console.log(data);
