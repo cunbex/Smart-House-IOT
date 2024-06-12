@@ -1,4 +1,4 @@
-# Smart House IoT
+# Smart House IoT License year project
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/cunbex/Smart-House-IOT/blob/main/LICENSE)
 
 Smart House IoT is a project aimed at building a smart home system using Internet of Things (IoT) technologies.
@@ -6,6 +6,7 @@ Smart House IoT is a project aimed at building a smart home system using Interne
 ## Table of Contents
 - [Introduction](#introduction)
 - [Features](#features)
+- [Documentation](#Documentation)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
@@ -19,6 +20,10 @@ Smart House IoT is a project aimed at building a smart home system using Interne
 ## Introduction
 
 The Smart House IoT project allows you to control various devices and monitor environmental conditions in your house remotely through IoT technologies. Whether it's controlling lights, temperature, or security cameras, this project provides a flexible framework to build your smart home system.
+
+## Documentation
+
+You can find the project license year Thesis in PDF format [here](pdf/USTHB_Thesis.pdf). Keep in mind that i was obligated to write the Thesis in french and i'm too lazy to translate it to english, if you can help with that / provide a solution feel free to email me.
 
 ## Features
 
