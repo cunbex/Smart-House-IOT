@@ -30,10 +30,10 @@ The Smart House IoT project allows you to control various devices and monitor en
 ### Prerequisites
 
 To run this project, you will need:
-- Raspberry Pi or any other compatible single-board computer
-- Sensors (e.g., temperature, humidity)
-- Actuators (e.g., relays for controlling appliances)
-- Node.js 20.14.0 or later
+- Raspberry Pi or any other compatible single-board computer.
+- Sensors (e.g., temperature, humidity).
+- Actuators (e.g., relays for controlling appliances).
+- Node.js 20.14.0 or later.
 
 ### Installation
 
@@ -82,12 +82,13 @@ After installation, you can run the project using `npm run devstart`.
 ### Informations
 
 - For the experiment to work, three repositories must be running either on the cloud or your machine: Smart-House-IOT, controller_dashboard, mosquitto_api.
+- Regarding PaaS used, i hosted the API's & website on render.com, the docker container that has MQTT/Mosquitto running on dockerHub & the database on supabase.com.
 - Additional setup is required for the experiment to work. The project is highly dependent on the `.env` file, so make sure you create your own `.env` file.
 - This is not a finished project; it's a university licensed degree project.
 - The project is hosted at: [https://smart-house-iot.onrender.com/](https://smart-house-iot.onrender.com/) (sometimes may require up to 50 seconds for the website to load).
 - A single-board computer is required.
-- Single-board computer code is on the controller-dashboard repository: [controller_dashboard](https://github.com/cunbex/controller_dashboard)
-- Mosquitto API code is on the mosquitto_api repository: [mosquitto_api](https://github.com/cunbex/mosquitto-api)
+- Single-board computer code is on the controller-dashboard repository: [controller_dashboard](https://github.com/cunbex/controller_dashboard).
+- Mosquitto API code is on the mosquitto_api repository: [mosquitto_api](https://github.com/cunbex/mosquitto-api).
 
 ### Demo
 
@@ -95,7 +96,7 @@ screenshots for user dashboard & some console.log during the manipulation:
 
 ## Contributing
 
-Contributions are welcome! If you'd like to contribute to this project, feel free to fork the repository and submit a pull request with your changes, or if you have questions & suggestions you can contact me on my email: hamzalagab.tech@gmail.com
+Contributions are welcome! If you'd like to contribute to this project, feel free to fork the repository and submit a pull request with your changes, or if you have questions & suggestions you can contact me on my email: hamzalagab.tech@gmail.com.
 
 ## License
 
