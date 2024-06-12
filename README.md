@@ -11,7 +11,8 @@ Smart House IoT is a project aimed at building a smart home system using Interne
   - [Installation](#installation)
 - [Usage](#usage)
 - [Informations](#informations)
-- [Demo](#Demo)
+- [Demo Pictures](#Demo-Pictures)
+- [Demo Video](#Demo-Video)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -90,7 +91,7 @@ After installation, you can run the project using `npm run devstart`.
 - Single-board computer code is on the controller-dashboard repository: [controller_dashboard](https://github.com/cunbex/controller_dashboard).
 - Mosquitto API code is on the mosquitto_api repository: [mosquitto_api](https://github.com/cunbex/mosquitto-api).
 
-### Demo
+### Demo-Pictures
 1. Landing page:
    
    ![Landing page](demo/1.png?raw=true)
@@ -127,7 +128,7 @@ After installation, you can run the project using `npm run devstart`.
     
    ![Log after recieving a value](demo/9.png?raw=true)
 
-### Demo video
+### Demo-video
 
 I have made a simple video demonstration a basic experiment of my project:
 1. I had the raspberryPi on & all the repo's up also.
