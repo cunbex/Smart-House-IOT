@@ -57,12 +57,12 @@ npm install
 ```
 
 3. Initialize .env & Prisma:
+   
+Make sure to create a .env file and set up your database connection in prisma links and your environment variables.
 
 ```bash
 prisma init
 ```
-   Make sure to create a .env file and set up your database connection in prisma links and your environment variables (env file example Inc)
-
 - Pull the database schema if you already have a schema:
 
 ```bash
