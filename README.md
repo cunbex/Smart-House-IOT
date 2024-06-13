@@ -39,9 +39,13 @@ To run this project, you will need:
 - Raspberry Pi or any other compatible single-board computer.
 - Sensors (e.g., temperature, humidity).
 - Actuators (e.g., relays for controlling appliances).
+- [Controller dashboard repo](https://github.com/cunbex/controller_dashboard) installed & running.
+- [Mosquitto API repo](https://github.com/cunbex/mosquitto-api) installed & running.
 - Node.js 20.14.0 or later.
 
 ### Installation
+
+This installation pattern will be applied to all the 3 repo's, Smart-House-IOT repo, Controller_dashboard repo & Mosquitto_api repo.
 
 1. Clone the repository:
 
@@ -63,7 +67,7 @@ Make sure to create a .env file and set up your database connection in prisma li
 ```bash
 prisma init
 ```
-- Pull the database schema if you already have a schema:
+- Pull the database schema if the schema is already made:
 
 ```bash
 prisma db pull
