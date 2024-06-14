@@ -39,9 +39,13 @@ To run this project, you will need:
 - Raspberry Pi or any other compatible single-board computer.
 - Sensors (e.g., temperature, humidity).
 - Actuators (e.g., relays for controlling appliances).
+- [Controller dashboard repo](https://github.com/cunbex/controller_dashboard) installed & running.
+- [Mosquitto API repo](https://github.com/cunbex/mosquitto-api) installed & running.
 - Node.js 20.14.0 or later.
 
 ### Installation
+
+This installation pattern will be applied to all the 3 repo's, Smart-House-IOT repo, Controller_dashboard repo & Mosquitto_api repo.
 
 1. Clone the repository:
 
@@ -56,26 +60,26 @@ cd Smart-House-IOT
 npm install
 ```
 
-3. Initialize Prisma:
+3. Initialize .env & Prisma:
+   
+Make sure to create a .env file and set up your database connection in prisma links and your environment variables.
 
 ```bash
 prisma init
 ```
-   Make sure to create a Prisma .env file and set up your database connection links.
-
-4. Pull the database schema:
+- Pull the database schema if the schema is already made:
 
 ```bash
 prisma db pull
 ```
 
-5. Generate Prisma client:
+4. Generate Prisma client:
 
 ```bash
 prisma generate
 ```
 
-6. Start the project:
+5. Start the project:
 
 ```bash
 npm run devstart
@@ -89,9 +93,8 @@ After installation, you can run the project using `npm run devstart`.
 
 - For the experiment to work, three repositories must be running either on the cloud or your machine: Smart-House-IOT, controller_dashboard, mosquitto_api.
 - Regarding PaaS used, i hosted the API's & website on render.com, the docker container that has MQTT/Mosquitto running on dockerHub & the database on supabase.com.
-- Additional setup is required for the experiment to work. The project is highly dependent on the `.env` file, so make sure you create your own `.env` file.
-- This is not a finished project; it's a university licensed degree project.
-- The project is hosted at: [https://smart-house-iot.onrender.com/](https://smart-house-iot.onrender.com/) (sometimes may require up to 50 seconds for the website to load).
+- Additional setup is required for the experiment to work. The project is highly dependent on the `.env` file, so make sure you create your own `.env` file, feel free to email me if you have problems setting it up.
+- This is not a finished project; it's a university licensed degree project. [Website link](https://smart-house-iot.onrender.com/) (sometimes may require up to 50 seconds for the website to load).
 - A single-board computer is required.
 - Single-board computer code is on the controller-dashboard repository: [controller_dashboard](https://github.com/cunbex/controller_dashboard).
 - Mosquitto API code is on the mosquitto_api repository: [mosquitto_api](https://github.com/cunbex/mosquitto-api).
